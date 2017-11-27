@@ -1,0 +1,18 @@
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/org")
+
+(setq
+    system-time-locale "C"
+    org-html-postamble nil
+    org-confirm-babel-evaluate nil
+
+    make-backup-files nil
+    auto-save-default nil
+)
+
+(org-babel-do-load-languages
+    'org-babel-load-languages '(
+        (python . t)
+        (dot . t)
+        (shell . t)
+    )
+)

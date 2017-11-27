@@ -1,0 +1,178 @@
+#===============================================================================
+# From Xubuntu's Default .bashrc:
+
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000000
+HISTFILESIZE=1000000000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+#===============================================================================
+# Color Support:
+
+case "$TERM" in
+    xterm*)
+        has_color=1
+
+        color_normal="\033[0m"
+        color_user="\033[2;34m"
+        color_host="\033[2;35m"
+        color_dir="\033[0;91m"
+        color_ssh="\033[2;31m"
+        color_git="\033[2;32m"
+
+        eval "$(dircolors -b ~/.dircolors)"
+        export GCC_COLORS='error=0;91:warning=0;93:note=0;96:caret=01;95:locus=0;32:quote=0;97'
+        ;;
+    *)
+        ;;
+esac
+
+#===============================================================================
+# Default editor:
+
+export EDITOR=vim
+
+#===============================================================================
+# Remote Desktop:
+
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]; then
+    is_remote=1
+fi
+
+#===============================================================================
+# Current git branch:
+
+git_current_branch_string() {
+    local branch_name=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+
+    if [ -n "$branch_name" ]; then
+
+        local branch_note=''
+        if echo $branch_name | grep -q '^(HEAD detached at'; then
+            branch_name=$(echo $branch_name | sed -e 's/(HEAD detached at \(.*\))/\1/')
+            branch_note='detached! '
+
+        elif echo $branch_name | grep -q '^(no branch, rebasing'; then
+            branch_name=$(echo $branch_name | sed -e 's/(no branch, rebasing \(.*\))/\1/')
+            branch_note='rebasing! '
+        fi
+
+        local dirty=''
+        if [ -n "$(git status --porcelain)" ]; then
+            dirty=' *'
+        fi
+
+        echo -e ' | '$branch_note$color_git$branch_name$dirty$color_normal
+    fi
+}
+
+#===============================================================================
+# PS1:
+
+PS1='\[\e]0;\u @ \h: \w\a\]${debian_chroot:+($debian_chroot)}'
+
+if [ -n "$is_remote" ]; then
+    PS1=$PS1$color_ssh'ssh'$color_normal' : '
+fi
+
+PS1=$PS1$color_user'\u'$color_normal' @ '$color_host'\h'$color_normal' : '$color_dir'\w'$color_normal'$(git_current_branch_string)\n\$ '
+
+#===============================================================================
+# Aliases:
+
+alias ls='ls -C --group-directories-first --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+alias :q='exit'
+
+alias :up='sudo apt update; sudo apt dist-upgrade; sudo apt autoremove'
+
+alias :ip='ifconfig | grep inet'
+
+alias :topdf='sudo libreoffice --headless --invisible --convert-to pdf --outdir .'
+
+alias :texrm='rm -f *.aux *.log *.out *.blg *.bbl *.bcf *.brf *.run.xml *.snm *.nav \
+                    *.toc *.lof *.lot *.lsb *.las *.los *.loa *.ent *~'
+
+alias :tex='pdflatex -file-line-error -shell-escape -halt-on-error -interaction=nonstopmode'
+alias :luatex='lualatex -file-line-error -shell-escape -halt-on-error -interaction=nonstopmode'
+
+alias :cg='valgrind --tool=callgrind --cache-sim=yes --branch-sim=yes'
+alias :vg='valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes'
+
+man() {
+    LESS_TERMCAP_md=$'\e[1;32m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[1;40;36m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[1;35m' \
+    command man "$@"
+}
+
+fdiff() {
+    diff -u $1 $2 | diff-so-fancy | less --tabs=4 -RFX
+}
+
+# My functions
+
+alias :s='text-substitute'
+alias :f='text-find'
+alias :k='kill-by-name'
+
+#===============================================================================
+# Listing:
+
+source /files/Dropbox/scripts/sh/list.sh
+
+list

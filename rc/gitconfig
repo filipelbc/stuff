@@ -1,0 +1,46 @@
+[user]
+    email = filipelbc@gmail.com
+    name = filipelbc
+
+[core]
+    editor = vim
+    whitespace = fix,-indent-with-non-tab,trailing-space
+    excludesfile = ~/.gitignore_global
+    pager = "diff-so-fancy | less --tabs=4 -RFX"
+
+[diff]
+    tool = vimdiff
+	algorithm = minimal
+
+[difftool]
+    prompt = false
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    showbranch = auto
+    interactive = auto
+    ui = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = bold
+    frag = blue
+    old = red
+    new = green
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = red
+
+[credential]
+    helper = cache --timeout=7200
+
+[push]
+    default = simple

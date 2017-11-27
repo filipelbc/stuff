@@ -1,0 +1,182 @@
+"===============================================================================
+" Vundle Settings:
+
+set nocompatible
+filetype off
+set runtimepath+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+" fancy
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'w0rp/ale'
+Plugin 'airblade/vim-gitgutter'
+" general
+Plugin 'lifepillar/vim-solarized8'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'editorconfig/editorconfig-vim'
+" colors
+Plugin 'lilydjwg/colorizer'
+" json
+Plugin 'elzr/vim-json'
+" javascript
+Plugin 'jelera/vim-javascript-syntax'
+" css
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'hail2u/vim-css3-syntax'
+" dockerfile
+Plugin 'ekalinin/Dockerfile.vim'
+" org mode
+Plugin 'filipelbc/orgmode.vim'
+" markdown
+Plugin 'gabrielelana/vim-markdown'
+" csv
+Plugin 'chrisbra/csv.vim'
+" elm
+Plugin 'elmcast/elm-vim'
+" task juggler
+Plugin 'kalafut/vim-taskjuggler'
+" c-sharp
+Plugin 'OrangeT/vim-csharp'
+" plant uml
+Plugin 'aklt/plantuml-syntax'
+call vundle#end()
+
+filetype plugin indent on
+
+"===============================================================================
+" Settings:
+
+set autoindent
+set autoread
+set autowrite
+set backspace=indent,eol,start
+set backup
+set backupdir=~/.vim/backup//,/tmp//
+set breakindent
+set colorcolumn=80
+set cursorline
+set diffopt=filler,vertical
+set directory=~/.vim/swap//,/tmp//
+set encoding=utf-8
+set expandtab
+set fileencoding=utf-8
+set fillchars=vert:\ ,
+set foldlevelstart=10
+set foldmethod=indent
+set foldminlines=5
+set gdefault
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set linebreak
+set list listchars=tab:»·,trail:·,nbsp:·
+set modelines=0
+set mouse=a
+set nomodeline
+set number
+set ruler
+set scrolloff=1
+set sessionoptions=sesdir,tabpages
+set shiftwidth=4
+set showcmd
+set showmatch
+set showmode
+set smartcase
+set softtabstop=4
+set splitbelow
+set splitright
+set tabstop=4
+set termguicolors
+set ttyfast
+set wildmenu
+set wildmode=longest,full
+
+syntax on
+set background=light
+let g:solarized_term_italics = 1
+let g:solarized_enable_extra_hi_groups = 1
+let g:airline_theme='solarized'
+colorscheme solarized8_high
+
+"===============================================================================
+" Options:
+
+" Vim-Ale
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'W'
+
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+let g:ale_open_list = 1
+
+" LaTex
+let g:tex_flavor = "latex"
+
+" Python
+let g:ycm_python_binary_path = 'python3'
+
+" Orgmode
+let g:org_start_with_closed_sections = 'endstate,comment'
+
+let g:org_custom_todo_styles = {
+            \   'DONE':     ['#22aa22', 'NONE',    'inverse,bold'],
+            \   'ACCEPTED': ['#4444ff', 'NONE',    'inverse,bold'],
+            \   'CLOSED':   ['#93a1a1', 'NONE',    'inverse,bold'],
+            \   'WAITING':  ['#839496', '#ffe000', 'bold'],
+            \   'REVIEW':   ['#ffaa00', 'NONE',    'inverse,bold'],
+            \   'WIP':      ['#ff7700', 'NONE',    'inverse,bold'],
+            \   'TODO':     ['#bb1100', 'NONE',    'inverse,bold'],
+            \ }
+
+" TaskJuggler
+autocmd FileType tjp setlocal commentstring=#\ %s
+
+" NerdCommenter
+let g:NERDDefaultAlign = 'left'
+
+" Vim-Autoformat
+let g:formatdef_orgformat_org = '"orgformat -"'
+let g:formatters_org = ['orgformat_org']
+
+let g:formatdef_jsbeautify_json = '"js-beautify -n -m 1 -"'
+let g:formatters_json = ['jsbeautify_json']
+
+let g:formatdef_jsbeautify_javascript = '"js-beautify -n -m 2 -"'
+let g:formatters_javascript = ['jsbeautify_javascript']
+
+let g:formatdef_elmformat_elm = '"elm-format --stdin"'
+let g:formatters_elm = ['elmformat_elm']
+
+"===============================================================================
+" Maps:
+
+let mapleader = ","
+
+nnoremap <leader><leader>a      :call SyntaxAttributes()<CR>
+nnoremap <leader><leader>p      "+p
+vnoremap <leader><leader>y      "+y
+
+" move between splits
+nnoremap <C-J>                  <C-W><C-J>
+nnoremap <C-K>                  <C-W><C-K>
+nnoremap <C-L>                  <C-W><C-L>
+nnoremap <C-H>                  <C-W><C-H>
+
+" change split orientation
+nnoremap <leader><leader>h      <C-W>t<C-W>K
+nnoremap <leader><leader>v      <C-W>t<C-W>H
+
+" clean search highlight
+nnoremap <leader><space>        :noh<CR>
