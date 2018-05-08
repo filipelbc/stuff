@@ -159,4 +159,14 @@ git clone https://github.com/hniksic/emacs-htmlize/
 cd emacs-htmlize
 sudo cp htmlize.el /usr/share/emacs/site-lisp/
 
+cd ~/bin
+rm -f diff-so-fancy
+wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+chmod +x diff-so-fancy
+
+cd ~/bin
+rm -rf java/
+mkdir -p java
+wget https://ufpr.dl.sourceforge.net/project/plantuml/plantuml.jar -O java/plantuml.jar
+
 cd ~
