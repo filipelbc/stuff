@@ -1,0 +1,51 @@
+#!/usr/bin/python3
+
+import sys
+import os
+
+p = ""
+s = ""
+n = 1
+
+f_in = []
+f_out = []
+
+usage = "numerate-files [-p <prefix>] [-s <sufix>] [-n <initial number>] [-h] <files>"
+
+if len(sys.argv) > 1:
+    i = 1
+    while i < len(sys.argv):
+        # prefix
+        if sys.argv[i] == "-p":
+            p = sys.argv[i + 1]
+            i = i + 2
+        # sufix
+        elif sys.argv[i] == "-s":
+            s = sys.argv[i + 1]
+            i = i + 2
+        # initial number
+        elif sys.argv[i] == "-n":
+            n = int(sys.argv[i + 1])
+            i = i + 2
+        # print help
+        elif sys.argv[i] == "-h":
+            print(usage)
+            i = i + 1
+        # skip hidden files
+        elif sys.argv[i][0] != ".":
+            if os.path.isfile(sys.argv[i]):
+                # get extension
+                dump, e = os.path.splitext(sys.argv[i])
+                # file names
+                f_in.append(sys.argv[i])
+                f_out.append(p + str(n) + s + e.lower() + ".temp")
+                n = n + 1
+                i = i + 1
+    # rename
+    for i in range(len(f_out)):
+        os.rename(f_in[i], f_out[i])
+    for i in range(len(f_out)):
+        os.rename(f_out[i], f_out[i][:-5])
+# print help
+else:
+    print(usage)

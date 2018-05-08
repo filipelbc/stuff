@@ -1,0 +1,8 @@
+#!/bin/bash
+
+[ "$#" -lt 2 ] && echo "text-find <pattern> <files>" && exit
+
+pattern=$1
+shift
+
+grep --color=auto -iIrn "$pattern" $@
