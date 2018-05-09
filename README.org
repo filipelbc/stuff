@@ -1,3 +1,3 @@
 * Stuff
 
-Scripts and Dotfiles
+Scripts, configuration files and other stuff
