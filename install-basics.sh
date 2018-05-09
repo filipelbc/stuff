@@ -88,7 +88,7 @@ pip3 install autopep8 flake8 pep8-naming
 
 mkdir -p ~/.config/terminator
 
-here=/files/Dropbox/scripts
+here=/files/git/filipelbc/stuff
 
 for i in bashrc \
          config/flake8 \
