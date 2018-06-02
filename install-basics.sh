@@ -83,6 +83,7 @@ sudo gpasswd -a $USER docker
 #chromedriver
 #node.js
 #js-beautify
+#docker-compose
 
 pip3 install autopep8 flake8 pep8-naming
 
