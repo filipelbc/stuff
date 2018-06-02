@@ -40,7 +40,7 @@ sudo apt-get -y install \
     code \
     curl \
     docker-ce \
-    dotnet-sdk \
+    dotnet-sdk-2.1 \
     emacs-nox \
     feh \
     git \
