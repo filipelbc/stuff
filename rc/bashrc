@@ -173,6 +173,6 @@ alias :k='kill-by-name'
 #===============================================================================
 # Listing:
 
-source /files/Dropbox/scripts/sh/list.sh
+source /files/git/filipelbc/stuff/sh/list.sh
 
 list
