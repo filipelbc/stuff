@@ -171,6 +171,11 @@ alias :f='text-find'
 alias :k='kill-by-name'
 
 #===============================================================================
+# Other:
+
+export DOCKER_USER=$(id -u $USER)
+
+#===============================================================================
 # Listing:
 
 source /files/git/filipelbc/stuff/sh/list.sh

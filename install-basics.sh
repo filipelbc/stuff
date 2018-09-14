@@ -58,6 +58,7 @@ sudo apt-get -y install \
     python3-pip \
     python3-virtualenv \
     pwgen \
+    rename \
     software-properties-common \
     ssh \
     terminator \
@@ -74,7 +75,15 @@ sudo apt-get -y install \
 # Remove redundant entry
 sudo sed -i -e '/google/d' /etc/apt/sources.list
 
+# Add user to docker group
 sudo gpasswd -a $USER docker
+
+# Docker-compose
+sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)"
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Python development helpers
+pip3 install autopep8 flake8 pep8-naming
 
 # Other things to install
 #mysql workbench
@@ -83,9 +92,6 @@ sudo gpasswd -a $USER docker
 #chromedriver
 #node.js
 #js-beautify
-#docker-compose
-
-pip3 install autopep8 flake8 pep8-naming
 
 mkdir -p ~/.config/terminator
 
@@ -144,11 +150,11 @@ sudo make install
 
 vim +PluginInstall +PluginUpdate +qall
 
-mkdir ~/src/ycm_build
-cd ~/src/ycm_build
-cmake -G "Unix Makefiles" -DUSE_PYTHON2=OFF . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
-cmake --build . --target ycm_core --config Release
+# YouCompleteMe (Vim plugin)
+cd ~/.vim/bundle/YouCompleteMe
+python3 ./install.py
 
+# Orgmode
 cd ~/src
 git clone https://code.orgmode.org/bzg/org-mode.git
 cd org-mode
@@ -162,12 +168,12 @@ sudo cp htmlize.el /usr/share/emacs/site-lisp/
 
 cd ~/bin
 rm -f diff-so-fancy
-wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+wget "https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy"
 chmod +x diff-so-fancy
 
 cd ~/bin
 rm -rf java/
 mkdir -p java
-wget https://ufpr.dl.sourceforge.net/project/plantuml/plantuml.jar -O java/plantuml.jar
+wget -q -O java/plantuml.jar "https://ufpr.dl.sourceforge.net/project/plantuml/plantuml.jar"
 
 cd ~

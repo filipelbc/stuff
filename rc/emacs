@@ -4,6 +4,7 @@
     system-time-locale "C"
     org-html-postamble nil
     org-confirm-babel-evaluate nil
+    org-babel-python-command "python3"
 
     make-backup-files nil
     auto-save-default nil
