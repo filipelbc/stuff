@@ -122,7 +122,7 @@ PS1=$PS1$color_user'\u'$color_normal' @ '$color_host'\h'$color_normal' : '$color
 #===============================================================================
 # Aliases:
 
-alias ls='ls -C --group-directories-first --color=auto'
+alias ls='ls -C --time-style=long-iso --group-directories-first --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
