@@ -95,8 +95,6 @@ pip3 install autopep8 flake8 pep8-naming
 
 mkdir -p ~/.config/terminator
 
-here=/files/git/filipelbc/stuff
-
 for i in bashrc \
          config/flake8 \
          config/pep8 \
@@ -111,11 +109,11 @@ for i in bashrc \
          vimrc
 do
     rm -rf ~/.$i
-    ln -sf $here/rc/$i ~/.$i
+    ln -sf $PWD/rc/$i ~/.$i
 done
 
 rm -rf ~/bin
-ln -sf $here/bin ~
+ln -sf $PWD/bin ~
 
 rm -rf ~/Downloads
 ln -sf /files/Downloads ~/Downloads
