@@ -10,7 +10,7 @@
 
 [diff]
     tool = vimdiff
-	algorithm = minimal
+    algorithm = minimal
 
 [difftool]
     prompt = false
@@ -39,8 +39,20 @@
     changed = green
     untracked = red
 
+[color "diff-highlight"]
+    oldNormal = red
+    oldHighlight = red 223
+    newNormal = green
+    newHighlight = green 193
+
 [credential]
     helper = cache --timeout=7200
 
 [push]
     default = simple
+
+[log]
+    date = short
+
+[format]
+    pretty = format:%C(auto)%h %C(auto,blue)%ad %C(auto,green)%<(10,trunc)%aN %C(auto)%d %C(auto,reset)%s

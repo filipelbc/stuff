@@ -29,6 +29,8 @@ Plugin 'jelera/vim-javascript-syntax'
 " css
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'hail2u/vim-css3-syntax'
+" typescript
+Plugin 'leafgarland/typescript-vim'
 " dockerfile
 Plugin 'ekalinin/Dockerfile.vim'
 " org mode
@@ -57,12 +59,12 @@ set autoread
 set autowrite
 set backspace=indent,eol,start
 set backup
-set backupdir=~/.vim/backup//,/tmp//
+set backupdir=/var/tmp/filipe/vim/backups/
 set breakindent
 set colorcolumn=80
 set cursorline
 set diffopt=filler,vertical
-set directory=~/.vim/swap//,/tmp//
+set directory=/var/tmp/filipe/vim/swap/
 set encoding=utf-8
 set expandtab
 set fileencoding=utf-8
@@ -106,6 +108,12 @@ let g:airline_theme='solarized'
 colorscheme solarized8_high
 
 "===============================================================================
+" Autocommands:
+
+" open all folds when openning a file
+autocmd BufWinEnter * normal zR
+
+"===============================================================================
 " Options:
 
 " Vim-Ale
@@ -121,7 +129,7 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ale_open_list = 1
 
-" LaTex
+" LaTeX
 let g:tex_flavor = "latex"
 
 " Python
@@ -142,6 +150,9 @@ let g:org_custom_todo_styles = {
 
 " TaskJuggler
 autocmd FileType tjp setlocal commentstring=#\ %s
+autocmd FileType tjp setlocal foldtext=getline(v:foldstart).\'...\'
+autocmd FileType tjp setlocal foldmethod=indent
+autocmd FileType tjp setlocal foldminlines=2
 
 " NerdCommenter
 let g:NERDDefaultAlign = 'left'

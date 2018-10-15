@@ -149,6 +149,8 @@ cd src
 make
 sudo make install
 
+mkdir -p /var/tmp/filipe/vim/{swap,backups}
+
 if [ ! -d ~/.vim/bundle/Vundle.vim ]
 then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
