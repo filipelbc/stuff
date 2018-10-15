@@ -2,8 +2,6 @@
 
 set -ex
 
-cd ~
-
 sudo apt-get -y purge \
     brltty-x11 \
     brltty \
@@ -73,7 +71,11 @@ sudo apt-get -y install \
     xvfb
 
 # Remove redundant entry
-sudo sed -i -e '/google/d' /etc/apt/sources.list
+sudo sed -i -e '/google/d' -e '/vscode/d' /etc/apt/sources.list
+
+# Remove splash screen
+sudo sed -i -e 's/quiet splash//' /etc/default/grub
+sudo update-grub
 
 # Add user to docker group
 sudo gpasswd -a $USER docker
@@ -83,7 +85,7 @@ sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Python development helpers
-pip3 install autopep8 flake8 pep8-naming
+pip3 install autopep8 flake8 pep8-naming 'pycodestyle==2.3.1'
 
 # Other things to install
 #mysql workbench
@@ -92,6 +94,9 @@ pip3 install autopep8 flake8 pep8-naming
 #chromedriver
 #node.js
 #js-beautify
+
+# Create symlinks
+stuff=$PWD
 
 mkdir -p ~/.config/terminator
 
@@ -109,22 +114,16 @@ for i in bashrc \
          vimrc
 do
     rm -rf ~/.$i
-    ln -sf $PWD/rc/$i ~/.$i
+    ln -sf $stuff/rc/$i ~/.$i
 done
 
 rm -rf ~/bin
-ln -sf $PWD/bin ~
+ln -sf $stuff/bin ~
 
 rm -rf ~/Downloads
-ln -sf /files/Downloads ~/Downloads
+ln -sf /files/downloads ~/Downloads
 
-# Install Dropbox
-wget -q -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar -xzf -
-
-# Add the following command to startup:
-#
-#   env DBUS_SESSION_BUS_ADDRESS='' sh -c  ~/.dropbox-dist/dropboxd
-
+# FIXME: figure out explicit list of dependencies
 echo "Have you enabled the deb-src repositories?"
 echo "If not, please enable and run 'apt-get -y update' before continuing."
 echo "Press any key to continue."
@@ -132,9 +131,13 @@ read
 
 sudo apt-get build-dep vim
 
-mkdir -p ~/src
+# External stuff
+other=$stuff/../../other
 
-cd ~/src
+mkdir -p $other
+
+# Vim
+cd $other
 git clone https://github.com/vim/vim.git
 cd vim
 make clean
@@ -146,6 +149,11 @@ cd src
 make
 sudo make install
 
+if [ ! -d ~/.vim/bundle/Vundle.vim ]
+then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
+
 vim +PluginInstall +PluginUpdate +qall
 
 # YouCompleteMe (Vim plugin)
@@ -153,25 +161,35 @@ cd ~/.vim/bundle/YouCompleteMe
 python3 ./install.py
 
 # Orgmode
-cd ~/src
-git clone https://code.orgmode.org/bzg/org-mode.git
+cd $other
+if [ ! -d org-mode ]
+then
+    git clone https://code.orgmode.org/bzg/org-mode.git
+fi
 cd org-mode
+git checkout master
 make
 sudo make install
 
-cd ~/src
-git clone https://github.com/hniksic/emacs-htmlize/
+cd $other
+if [ ! -d emacs-htmlize ]
+then
+    git clone https://github.com/hniksic/emacs-htmlize/
+fi
 cd emacs-htmlize
+git checkout master
 sudo cp htmlize.el /usr/share/emacs/site-lisp/
 
-cd ~/bin
+# Diff so fancy
+cd $other
 rm -f diff-so-fancy
 wget "https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy"
 chmod +x diff-so-fancy
 
+# Plantuml
 cd ~/bin
 rm -rf java/
 mkdir -p java
 wget -q -O java/plantuml.jar "https://ufpr.dl.sourceforge.net/project/plantuml/plantuml.jar"
 
-cd ~
+cd $stuff
