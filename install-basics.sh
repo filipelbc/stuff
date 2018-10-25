@@ -2,6 +2,7 @@
 
 set -ex
 
+# Remove useless stuff
 sudo apt-get -y purge \
     brltty-x11 \
     brltty \
@@ -14,21 +15,38 @@ sudo apt-get -y purge \
     ristretto \
     thunderbird
 
-sudo apt-add-repository -y ppa:webupd8team/java
+# Java
+sudo apt-add-repository -yn ppa:webupd8team/java
 
+# Docker
 wget -q -O - "https://download.docker.com/linux/ubuntu/gpg" | sudo apt-key add -
-sudo apt-add-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-add-repository -yn "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
+# Google Chrome
 wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
-sudo apt-add-repository -y "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+sudo apt-add-repository -yn "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
 
+# VS Code & Dotnet
 wget -q -O - "https://packages.microsoft.com/keys/microsoft.asc" | sudo apt-key add -
-sudo apt-add-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-sudo apt-add-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-$(lsb_release -cs)-prod $(lsb_release -cs) main"
+sudo apt-add-repository -yn "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+sudo apt-add-repository -yn "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-$(lsb_release -cs)-prod $(lsb_release -cs) main"
 
+# Mono & F#
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+sudo apt-add-repository -yn "deb https://download.mono-project.com/repo/ubuntu stable-$(lsb_release -cs) main"
+
+# Yarn
+wget -q -O - "https://dl.yarnpkg.com/debian/pubkey.gpg" | sudo apt-key add -
+sudo apt-add-repository -yn "deb https://dl.yarnpkg.com/debian/ stable main"
+
+# NodeJS
+wget -q -O - "https://deb.nodesource.com/setup_10.x" | sudo bash -
+
+# Update & Upgrade
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
+# Install useful stuff
 sudo apt-get -y install \
     apt-transport-https \
     autotools-dev \
@@ -44,24 +62,25 @@ sudo apt-get -y install \
     git \
     google-chrome-stable \
     gparted \
-    gthumb \
     graphviz \
+    gthumb \
     htop \
     intltool \
+    jq \
     libtool \
     mercurial \
     oracle-java8-installer \
     pinta \
+    pwgen \
     python3-dev \
     python3-pip \
     python3-virtualenv \
-    pwgen \
     rename \
     software-properties-common \
     ssh \
     terminator \
-    tree \
     texinfo \
+    tree \
     unrar \
     usb-creator-gtk \
     valgrind \
@@ -70,7 +89,7 @@ sudo apt-get -y install \
     xscreensaver \
     xvfb
 
-# Remove redundant entry
+# Remove redundant entries
 sudo sed -i -e '/google/d' -e '/vscode/d' /etc/apt/sources.list
 
 # Remove splash screen
@@ -85,15 +104,9 @@ sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Python development helpers
+# FIXME: check if flake8 in pip has been update to support the most recent
+# pycodestyle
 pip3 install autopep8 flake8 pep8-naming 'pycodestyle==2.3.1'
-
-# Other things to install
-#mysql workbench
-#mysql client
-#postgres client
-#chromedriver
-#node.js
-#js-beautify
 
 # Create symlinks
 stuff=$PWD
@@ -123,6 +136,11 @@ ln -sf $stuff/bin ~
 rm -rf ~/Downloads
 ln -sf /files/downloads ~/Downloads
 
+# External stuff
+other=$stuff/../../other
+
+mkdir -p $other
+
 # FIXME: figure out explicit list of dependencies
 echo "Have you enabled the deb-src repositories?"
 echo "If not, please enable and run 'apt-get -y update' before continuing."
@@ -131,15 +149,16 @@ read
 
 sudo apt-get build-dep vim
 
-# External stuff
-other=$stuff/../../other
-
-mkdir -p $other
-
 # Vim
 cd $other
-git clone https://github.com/vim/vim.git
+if [ ! -d vim ]
+then
+    git clone https://github.com/vim/vim.git
+fi
 cd vim
+git checkout master
+git pull
+git clean -xdf
 make clean
 cd src
 ./configure --with-features=huge \
@@ -170,6 +189,8 @@ then
 fi
 cd org-mode
 git checkout master
+git pull
+git clean -xdf
 make
 sudo make install
 
@@ -180,6 +201,8 @@ then
 fi
 cd emacs-htmlize
 git checkout master
+git pull
+git clean -xdf
 sudo cp htmlize.el /usr/share/emacs/site-lisp/
 
 # Diff so fancy
@@ -194,4 +217,5 @@ rm -rf java/
 mkdir -p java
 wget -q -O java/plantuml.jar "https://ufpr.dl.sourceforge.net/project/plantuml/plantuml.jar"
 
+# Back to stuff
 cd $stuff
