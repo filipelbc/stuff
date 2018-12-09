@@ -1,7 +1,7 @@
 " Vim syntax file
 "
 " Author:        Filipe L B Correia <filipelbc@gmail.com>
-" Last Change:   2016 Set 10 10:27:36
+" Last Change:   2018 dez 09 11:17:59
 "
 " Language:      Python 3
 
@@ -13,61 +13,60 @@ syntax clear
 
 " Keywods:
 
-syntax keyword pythonConditional    if elif else
-syntax keyword pythonConstant       True False None
-syntax keyword pythonException      try except finally raise
-syntax keyword pythonInclude        from import
-syntax keyword pythonOperator       is in not and or
-syntax keyword pythonRepeat         while for
-syntax keyword pythonStatement      return assert pass continue break
-syntax keyword pythonStatement      with global nonlocal yield as
+syntax keyword pythonConditional if elif else
+syntax keyword pythonConstant    True False None
+syntax keyword pythonException   try except finally raise
+syntax keyword pythonInclude     from import
+syntax keyword pythonOperator    is in not and or
+syntax keyword pythonRepeat      while for
+syntax keyword pythonStatement   return assert pass continue break with global
+            \ nonlocal yield as async await
 
-syntax keyword pythonLambda         lambda
-syntax keyword pythonClass          class nextgroup=pythonClassName skipwhite
-syntax keyword pythonFunction       def nextgroup=pythonFuncName skipwhite
+syntax keyword pythonLambda   lambda
+syntax keyword pythonClass    class nextgroup=pythonClassName skipwhite
+syntax keyword pythonFunction def nextgroup=pythonFuncName skipwhite
 
 " Todo:
 
-syntax keyword pythonTodo           TODO FIXME XXX contained
+syntax keyword pythonTodo TODO FIXME XXX contained
 
 " Builtin Exceptions And Warnings:
 
 syntax keyword pythonExClass BaseException
-                           \ Exception StandardError ArithmeticError
-                           \ LookupError EnvironmentError
-                           \ AssertionError AttributeError BufferError EOFError
-                           \ FloatingPointError GeneratorExit IOError
-                           \ ImportError IndexError KeyError
-                           \ KeyboardInterrupt MemoryError NameError
-                           \ NotImplementedError OSError OverflowError
-                           \ ReferenceError RuntimeError StopIteration
-                           \ SyntaxError IndentationError TabError
-                           \ SystemError SystemExit TypeError
-                           \ UnboundLocalError UnicodeError
-                           \ UnicodeEncodeError UnicodeDecodeError
-                           \ UnicodeTranslateError ValueError VMSError
-                           \ WindowsError ZeroDivisionError
-                           \ Warning UserWarning BytesWarning DeprecationWarning
-                           \ PendingDepricationWarning SyntaxWarning
-                           \ RuntimeWarning FutureWarning
-                           \ ImportWarning UnicodeWarning
+            \ Exception StandardError ArithmeticError
+            \ LookupError EnvironmentError
+            \ AssertionError AttributeError BufferError EOFError
+            \ FloatingPointError GeneratorExit IOError
+            \ ImportError IndexError KeyError
+            \ KeyboardInterrupt MemoryError NameError
+            \ NotImplementedError OSError OverflowError
+            \ ReferenceError RuntimeError StopIteration
+            \ SyntaxError IndentationError TabError
+            \ SystemError SystemExit TypeError
+            \ UnboundLocalError UnicodeError
+            \ UnicodeEncodeError UnicodeDecodeError
+            \ UnicodeTranslateError ValueError VMSError
+            \ WindowsError ZeroDivisionError
+            \ Warning UserWarning BytesWarning DeprecationWarning
+            \ PendingDepricationWarning SyntaxWarning
+            \ RuntimeWarning FutureWarning
+            \ ImportWarning UnicodeWarning
 
 " Builtins And Others:
 
 syntax keyword pythonSelf self cls
 
 syntax keyword pythonBuiltin __import__ abs all any ascii bin bool bytearray
-                           \ bytes callable chr classmethod compile complex
-                           \ delattr dict dir divmod enumerate eval exec
-                           \ filter float format frozenset getattr globals
-                           \ hasattr hash help hex id input int isinstance
-                           \ issubclass iter len list locals map max
-                           \ memoryview min next object oct open ord pow print
-                           \ property range repr reversed round set setattr
-                           \ slice sorted staticmethod str sum super tuple
-                           \ type vars zip
-
-syntax keyword pythonPrint print nextgroup=pythonFuncParens
+            \ bytes callable chr classmethod compile complex
+            \ delattr dict dir divmod enumerate eval exec
+            \ filter float format frozenset getattr globals
+            \ hasattr hash help hex id input int isinstance
+            \ issubclass iter len list locals map max
+            \ memoryview min next object oct open ord pow print
+            \ property range repr reversed round set setattr
+            \ slice sorted staticmethod str sum super tuple
+            \ type vars zip
+            \ nextgroup=pythonFuncParens
 
 " Function Call:
 
@@ -146,13 +145,13 @@ syntax region pythonBrackets    matchgroup=pythonOperator  start="\[" end="\]" t
 
 syntax match pythonDecorator "@" nextgroup=pythonDecoratorArg skipwhite
 
-syntax match pythonDecoratorArg "\h\w*\%(\.\h\w*\)*" contained contains=pythonDot nextgroup=pythonFunction,pythonClass skipwhite
+syntax match pythonDecoratorArg "\h\w*\%(\.\h\w*\)*" contained contains=pythonDot nextgroup=pythonFuncParens skipwhite
 
 " Function Arguments:
 
-syntax match pythonColon ":" contained nextgroup=pythonDocString skipwhite
+syntax match pythonColon ":" contained
 
-syntax region pythonFuncParens matchgroup=pythonDelimiter start="(" end=")" contained transparent nextgroup=pythonColon contains=ALLBUT,pythonBadParentheses,@pythonNotContained
+syntax region pythonFuncParens matchgroup=pythonDelimiter start="(" end=")" contained transparent nextgroup=pythonColon skipwhite contains=ALLBUT,pythonBadParentheses,@pythonNotContained
 
 syntax match pythonFuncParameter "\h\w*\ze=" contained
 
@@ -225,7 +224,6 @@ hi link pythonInteger               Integer
 hi link pythonLambda                Statement
 hi link pythonLineContinuation      Special
 hi link pythonOperator              Operator
-hi link pythonPrint                 Statement
 hi link pythonRepeat                Repeat
 hi link pythonSelf                  Macro
 hi link pythonShebang               Statement
