@@ -1,7 +1,7 @@
 " Vim syntax file
 "
 " Author:        Filipe L B Correia <filipelbc@gmail.com>
-" Last Change:   2018 dez 09 11:17:59
+" Last Change:   2018 dez 09 11:41:20
 "
 " Language:      Python 3
 
@@ -97,9 +97,7 @@ syntax match pythonStringFormat "{\%(\h\w*\%(\.\h\w*\|\[\%(\d\+\|[^\]]*\)]\)*\|\
 syntax match pythonStringFormating "%\(([^)]\+)\)\=[-#0 +]*\d*\(\.\d\+\)\=[hlL]\=[diouxXeEfFgGcrsa%]" contained
 syntax match pythonStringFormating "%[-#0 +]*\(\*\|\d\+\)\=\(\.\(\*\|\d\+\)\)\=[hlL]\=[diouxXeEfFgGcrsa%]" contained
 
-syntax match pythonStringTemplate "$\%($\|\h\w*\|{\h\w*}\)" contained
-
-syntax cluster pythonStringContains contains=pythonStringEscape,pythonStringFormat,pythonStringFormating,pythonStringTemplate,
+syntax cluster pythonStringContains contains=pythonStringEscape,pythonStringFormat,pythonStringFormating
 
 " Strings:
 
@@ -124,10 +122,6 @@ syntax region pythonBytes matchgroup=pythonDelimiter start="\([bB][Rr]\=\|[rR][b
 
 syntax region pythonBytesTriple matchgroup=pythonDelimiter start="\([bB][Rr]\=\|[rR][bB]\)\"\"\"" end="\"\"\"" contains=pythonBytesEscape
 syntax region pythonBytesTriple matchgroup=pythonDelimiter start="\([bB][Rr]\=\|[rR][bB]\)\'\'\'" end="\'\'\'" contains=pythonBytesEscape
-
-" DocTest:
-
-" TODO
 
 " Parentheses And Regions:
 
@@ -174,7 +168,7 @@ syntax match pythonFloat "\.\d\+\%([eE][+-]\=\d\+\)\=[jJ]\=\>"
 
 " Errors:
 
-syntax match pythonBadOperator "[$?]"
+syntax match pythonBadOperator "[$`?]"
 syntax match pythonBadOperator "[&|]\{2,}"
 syntax match pythonBadOperator "[=><]\{3,}"
 
@@ -195,11 +189,10 @@ syntax match pythonEncoding "^#.*coding[:=].*$" contained
 hi link pythonBadBrackets           Error
 hi link pythonBadCurly              Error
 hi link pythonBadOperator           Error
-hi link pythonBadParens             Error
+hi link pythonBadParentheses        Error
 hi link pythonBuiltin               Statement
 hi link pythonClass                 Statement
 hi link pythonClassName             Function
-hi link pythonCoding                Statement
 hi link pythonColon                 Operator
 hi link pythonComma                 Delimiter
 hi link pythonComment               Comment
@@ -227,14 +220,11 @@ hi link pythonOperator              Operator
 hi link pythonRepeat                Repeat
 hi link pythonSelf                  Macro
 hi link pythonShebang               Statement
-hi link pythonSpecialName           Special
 hi link pythonStatement             Statement
 hi link pythonString                String
 hi link pythonStringEscape          Special
 hi link pythonStringFormat          Special
 hi link pythonStringFormating       Special
-hi link pythonStringTemplate        Special
-hi link pythonStringTriple          String
 hi link pythonStringTriple          String
 hi link pythonStringRaw             Tag
 hi link pythonStringRawTriple       Tag
@@ -246,4 +236,4 @@ syntax sync match pythonSync grouphere NONE "^\s*\%(def\|class\)\s"
 
 " End:
 
-let b:current_syntax = "cpp"
+let b:current_syntax = "python"
