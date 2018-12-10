@@ -24,3 +24,18 @@
         (plantuml . t)
     )
 )
+
+; Override the default src block error handling function in order to make
+; export fail.
+(defun org-babel-eval-error-notify (exit-code stderr)
+    (error "Babel evaluation exited with code %S:\n%s" exit-code stderr))
+
+; Override the default template for the UP and HOME links of the HTML export
+(setq
+    org-html-home/up-format
+    "<div id='org-div-home-and-up'>
+        <ul>
+            <li id='navUp'><a accesskey='u' href='%s'>Up</a></li>
+            <li id='navHome'><a accesskey='h' href='%s'>Home</a></li>
+        </ul>
+    </div>")
