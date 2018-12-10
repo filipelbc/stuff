@@ -72,7 +72,7 @@ sudo apt-get -y install \
     oracle-java8-installer \
     pinta \
     pwgen \
-    python3-dev \
+    python3-all \
     python3-pip \
     python3-virtualenv \
     rename \
