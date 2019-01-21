@@ -104,9 +104,7 @@ sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Python development helpers
-# FIXME: check if flake8 in pip has been update to support the most recent
-# pycodestyle
-pip3 install autopep8 flake8 pep8-naming 'pycodestyle==2.3.1'
+pip3 install pylint autopep8 flake8 pep8-naming
 
 # Create symlinks
 stuff=$PWD
