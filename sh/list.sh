@@ -1,7 +1,7 @@
 # Bash script file
 #
 # Author:        Filipe L B Correia <filipelbc@gmail.com>
-# Last Change:   2016 Dez 04 17:48:44
+# Last Change:   2019 Apr 16 11:00:36
 #
 # About:         functions for directory listing after cd'ing
 
@@ -84,11 +84,15 @@ list_print_dir () {
     list_print_ls "$p"
 }
 
+list_clear () {
+    echo -e '\033[H\033[2J'
+}
+
 #===============================================================================
 # Main:
 
 list () {
-    clear
+    list_clear
     # list current directory if no argument is given
     if [ "$#" -eq 0 ]; then
         list_print_pwd
