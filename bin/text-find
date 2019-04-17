@@ -5,4 +5,4 @@
 pattern=$1
 shift
 
-grep --color=auto -iIrn "$pattern" $@
+grep --color=auto -iIrn --exclude-dir=.git --exclude-dir=node_modules "$pattern" $@

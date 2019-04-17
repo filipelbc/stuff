@@ -2,18 +2,20 @@
 
 [ "$#" -lt 3 ] && echo "text-substitute <pattern> <replacement> <files>" && exit
 
+g="grep --color=auto --exclude-dir=.git --exclude-dir=node_modules"
+
 pattern=$1
 shift
 
 replacement=s/$pattern/$1/g
 shift
 
-grep --color=auto -Irn "$pattern" $@
+$g -Irn "$pattern" $@
 
 read -p "Apply substitution? [yes/no] " response
 case $response in
     yes)
-        grep --color=auto -Irl "$pattern" $@ | xargs sed -i -e "$replacement"
+        $g -Irl "$pattern" $@ | xargs sed -i -e "$replacement"
         ;;
     *)
         ;;
