@@ -109,6 +109,23 @@ git_current_branch_string() {
 }
 
 #===============================================================================
+# Current dit task:
+
+dit_current_task_name() {
+    local current_fn=~/.dit/.current
+
+    if [ ! -f $current_fn ]; then
+        return
+    fi
+
+    local task_name=$(cat $current_fn | jq 'if .halted == false then (.group + "/" + (if .subgroup == "" then "." else .subgroup end) + "/" + .task) else "" end' | sed -e 's/"//g')
+
+    if [ -n "$task_name" ]; then
+        echo -e ' | '$color_git$task_name$color_normal
+    fi
+}
+
+#===============================================================================
 # PS1:
 
 PS1='\[\e]0;\u @ \h: \w\a\]${debian_chroot:+($debian_chroot)}'
@@ -117,7 +134,7 @@ if [ -n "$is_remote" ]; then
     PS1=$PS1$color_ssh'ssh'$color_normal' : '
 fi
 
-PS1=$PS1$color_user'\u'$color_normal' @ '$color_host'\h'$color_normal' : '$color_dir'\w'$color_normal'$(git_current_branch_string)\n\$ '
+PS1=$PS1$color_user'\u'$color_normal' @ '$color_host'\h'$color_normal' : '$color_dir'\w'$color_normal'$(git_current_branch_string)$(dit_current_task_name)\n\$ '
 
 #===============================================================================
 # Aliases:
