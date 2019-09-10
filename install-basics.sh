@@ -31,10 +31,6 @@ wget -q -O - "https://packages.microsoft.com/keys/microsoft.asc" | sudo apt-key 
 sudo apt-add-repository -yn "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 sudo apt-add-repository -yn "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-$(lsb_release -cs)-prod $(lsb_release -cs) main"
 
-# Mono & F#
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-sudo apt-add-repository -yn "deb https://download.mono-project.com/repo/ubuntu stable-$(lsb_release -cs) main"
-
 # Yarn
 wget -q -O - "https://dl.yarnpkg.com/debian/pubkey.gpg" | sudo apt-key add -
 sudo apt-add-repository -yn "deb https://dl.yarnpkg.com/debian/ stable main"
