@@ -45,6 +45,8 @@ Plugin 'elmcast/elm-vim'
 Plugin 'kalafut/vim-taskjuggler'
 " c-sharp
 Plugin 'OrangeT/vim-csharp'
+" f-sharp
+Plugin 'fsharp/vim-fsharp'
 " plant uml
 Plugin 'aklt/plantuml-syntax'
 call vundle#end()
