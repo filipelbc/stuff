@@ -36,7 +36,7 @@ wget -q -O - "https://dl.yarnpkg.com/debian/pubkey.gpg" | sudo apt-key add -
 sudo apt-add-repository -yn "deb https://dl.yarnpkg.com/debian/ stable main"
 
 # NodeJS
-wget -q -O - "https://deb.nodesource.com/setup_10.x" | sudo bash -
+wget -q -O - "https://deb.nodesource.com/setup_12.x" | sudo bash -
 
 # Update & Upgrade
 sudo apt-get -y update
@@ -96,7 +96,7 @@ sudo update-grub
 sudo gpasswd -a $USER docker
 
 # Docker-compose
-sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)"
+sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)"
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Python development helpers
