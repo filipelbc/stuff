@@ -26,6 +26,8 @@ Plugin 'lilydjwg/colorizer'
 Plugin 'sheerun/vim-polyglot'
 " org mode
 Plugin 'filipelbc/orgmode.vim'
+" task juggler
+Plugin 'kalafut/vim-taskjuggler'
 call vundle#end()
 
 filetype plugin indent on
@@ -112,6 +114,7 @@ let g:ale_open_list = 1
 let g:tex_flavor = "latex"
 
 " Python
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_python_binary_path = 'python3'
 
 " Orgmode
