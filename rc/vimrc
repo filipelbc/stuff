@@ -22,33 +22,10 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'editorconfig/editorconfig-vim'
 " colors
 Plugin 'lilydjwg/colorizer'
-" json
-Plugin 'elzr/vim-json'
-" javascript
-Plugin 'jelera/vim-javascript-syntax'
-" css
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'hail2u/vim-css3-syntax'
-" typescript
-Plugin 'leafgarland/typescript-vim'
-" dockerfile
-Plugin 'ekalinin/Dockerfile.vim'
+" polyglot
+Plugin 'sheerun/vim-polyglot'
 " org mode
 Plugin 'filipelbc/orgmode.vim'
-" markdown
-Plugin 'gabrielelana/vim-markdown'
-" csv
-Plugin 'chrisbra/csv.vim'
-" elm
-Plugin 'elmcast/elm-vim'
-" task juggler
-Plugin 'kalafut/vim-taskjuggler'
-" c-sharp
-Plugin 'OrangeT/vim-csharp'
-" f-sharp
-Plugin 'fsharp/vim-fsharp'
-" plant uml
-Plugin 'aklt/plantuml-syntax'
 call vundle#end()
 
 filetype plugin indent on

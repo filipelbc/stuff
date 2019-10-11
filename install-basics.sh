@@ -158,7 +158,7 @@ make clean
 cd src
 ./configure --with-features=huge \
             --with-x \
-            --enable-python3interp=dynamic \
+            --enable-python3interp=yes \
             --enable-gui=no
 make
 sudo make install
@@ -174,7 +174,7 @@ vim +PluginInstall +PluginUpdate +qall
 
 # YouCompleteMe (Vim plugin)
 cd ~/.vim/bundle/YouCompleteMe
-python3 ./install.py
+python3 ./install.py --ts-completer
 
 # Orgmode
 cd $other
