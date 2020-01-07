@@ -28,6 +28,8 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'filipelbc/orgmode.vim'
 " task juggler
 Plugin 'kalafut/vim-taskjuggler'
+" additional ssh files
+Plugin 'qnighy/vim-ssh-annex'
 call vundle#end()
 
 filetype plugin indent on
