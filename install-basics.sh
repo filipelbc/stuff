@@ -96,11 +96,11 @@ sudo update-grub
 sudo gpasswd -a $USER docker
 
 # Docker-compose
-sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)"
+sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/1.25.1/docker-compose-$(uname -s)-$(uname -m)"
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Python development helpers
-pip3 install pylint autopep8 flake8 pep8-naming
+pip3 install --user pylint autopep8 flake8 pep8-naming
 
 # Create symlinks
 stuff=$PWD
@@ -142,9 +142,9 @@ echo "If not, please enable and run 'apt-get -y update' before continuing."
 echo "Press any key to continue."
 read
 
+# Vim
 sudo apt-get build-dep vim
 
-# Vim
 cd $other
 if [ ! -d vim ]
 then
@@ -190,26 +190,17 @@ make
 sudo make install
 
 cd $other
-if [ ! -d emacs-htmlize ]
-then
-    git clone https://github.com/hniksic/emacs-htmlize/
-fi
-cd emacs-htmlize
-git checkout master
-git pull
-git clean -xdf
-sudo cp htmlize.el /usr/share/emacs/site-lisp/
+sudo wget -q -O /usr/share/emacs/site-lisp/htmlize.el 'https://raw.githubusercontent.com/hniksic/emacs-htmlize/master/htmlize.el'
 
 # Diff so fancy
 cd $other
-rm -f diff-so-fancy
-wget "https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy"
+wget -q -O diff-so-fancy "https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy"
 chmod +x diff-so-fancy
 
 # Plantuml
 cd ~/bin
-rm -rf java/
 mkdir -p java
+rm -rf java/*
 wget -q -O java/plantuml.jar "https://ufpr.dl.sourceforge.net/project/plantuml/plantuml.jar"
 
 # Back to stuff
