@@ -173,5 +173,8 @@ nnoremap <C-H>                  <C-W><C-H>
 nnoremap <leader><leader>h      <C-W>t<C-W>K
 nnoremap <leader><leader>v      <C-W>t<C-W>H
 
+" close all quicklist, location list, scratch windows
+nnoremap <leader><leader>c      :windo lcl<CR>| ccl | pc!
+
 " clean search highlight
 nnoremap <leader><space>        :noh<CR>
