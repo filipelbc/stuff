@@ -100,7 +100,7 @@ git_current_branch_string() {
         fi
 
         local dirty=''
-        if [ -n "$(git status --porcelain)" ]; then
+        if [ -n "$(git status --porcelain 2> /dev/null)" ]; then
             dirty=' *'
         fi
 
