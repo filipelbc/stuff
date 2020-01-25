@@ -174,7 +174,15 @@ nnoremap <leader><leader>h      <C-W>t<C-W>K
 nnoremap <leader><leader>v      <C-W>t<C-W>H
 
 " close all quicklist, location list, scratch windows
-nnoremap <leader><leader>c      :windo lcl<CR>| ccl | pc!
+function! CloseQLS()
+  let currwin=winnr()
+  execute 'windo lcl'
+  execute 'windo ccl'
+  execute 'windo pc!'
+  execute currwin . 'wincmd w'
+endfunction
+
+nnoremap <leader><leader>c      :noautocmd call CloseQLS()<CR>
 
 " clean search highlight
 nnoremap <leader><space>        :noh<CR>
