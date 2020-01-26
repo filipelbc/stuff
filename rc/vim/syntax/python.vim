@@ -1,7 +1,7 @@
 " Vim syntax file
 "
 " Author:        Filipe L B Correia <filipelbc@gmail.com>
-" Last Change:   2020 jan 26 12:41:39
+" Last Change:   2020 jan 26 17:12:41
 "
 " Language:      Python 3
 
@@ -221,11 +221,11 @@ syntax match pythonFStringFormat "{{\|}}" contained
 
 syntax cluster pythonFStringContains contains=pythonStringEscape,pythonFStringFormat
 
-syntax region pythonFString matchgroup=pythonDelimiter start="[fF]\=\"" end="\"" contains=@pythonFStringContains
-syntax region pythonFString matchgroup=pythonDelimiter start="[fF]\=\'" end="\'" contains=@pythonFStringContains
+syntax region pythonFString matchgroup=pythonDelimiter start="[fF]\"" end="\"" contains=@pythonFStringContains
+syntax region pythonFString matchgroup=pythonDelimiter start="[fF]\'" end="\'" contains=@pythonFStringContains
 
-syntax region pythonFStringTriple matchgroup=pythonDelimiter start="[fF]\=\"\"\"" end="\"\"\"" contains=@pythonFStringContains
-syntax region pythonFStringTriple matchgroup=pythonDelimiter start="[fF]\=\'\'\'" end="\'\'\'" contains=@pythonFStringContains
+syntax region pythonFStringTriple matchgroup=pythonDelimiter start="[fF]\"\"\"" end="\"\"\"" contains=@pythonFStringContains
+syntax region pythonFStringTriple matchgroup=pythonDelimiter start="[fF]\'\'\'" end="\'\'\'" contains=@pythonFStringContains
 
 syntax region pythonFStringRaw matchgroup=pythonDelimiter start="\([fF][Rr]\|[rR][fF]\)\"" end="\"" contains=pythonFStringFormat
 syntax region pythonFStringRaw matchgroup=pythonDelimiter start="\([fF][Rr]\|[rR][fF]\)\'" end="\'" contains=pythonFStringFormat
@@ -364,6 +364,7 @@ hi link pythonFString               String
 hi link pythonFStringTriple         String
 hi link pythonFStringRaw            String
 hi link pythonFStringRawTriple      String
+hi link pythonFStringFormat         Special
 hi link pythonTodo                  Todo
 
 " Syncronization:
