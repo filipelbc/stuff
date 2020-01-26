@@ -1,7 +1,7 @@
 " Vim syntax file
 "
 " Author:        Filipe L B Correia <filipelbc@gmail.com>
-" Last Change:   2018 dez 09 11:41:20
+" Last Change:   2020 jan 26 12:13:17
 "
 " Language:      Python 3
 
@@ -19,8 +19,19 @@ syntax keyword pythonException   try except finally raise
 syntax keyword pythonInclude     from import
 syntax keyword pythonOperator    is in not and or
 syntax keyword pythonRepeat      while for
-syntax keyword pythonStatement   return assert pass continue break with global
-            \ nonlocal yield as async await
+syntax keyword pythonStatement
+            \ as
+            \ assert
+            \ async
+            \ await
+            \ break
+            \ continue
+            \ global
+            \ nonlocal
+            \ pass
+            \ return
+            \ with
+            \ yield
 
 syntax keyword pythonLambda   lambda
 syntax keyword pythonClass    class nextgroup=pythonClassName skipwhite
@@ -32,41 +43,131 @@ syntax keyword pythonTodo TODO FIXME XXX contained
 
 " Builtin Exceptions And Warnings:
 
-syntax keyword pythonExClass BaseException
-            \ Exception StandardError ArithmeticError
-            \ LookupError EnvironmentError
-            \ AssertionError AttributeError BufferError EOFError
-            \ FloatingPointError GeneratorExit IOError
-            \ ImportError IndexError KeyError
-            \ KeyboardInterrupt MemoryError NameError
-            \ NotImplementedError OSError OverflowError
-            \ ReferenceError RuntimeError StopIteration
-            \ SyntaxError IndentationError TabError
-            \ SystemError SystemExit TypeError
-            \ UnboundLocalError UnicodeError
-            \ UnicodeEncodeError UnicodeDecodeError
-            \ UnicodeTranslateError ValueError VMSError
-            \ WindowsError ZeroDivisionError
-            \ Warning UserWarning BytesWarning DeprecationWarning
-            \ PendingDepricationWarning SyntaxWarning
-            \ RuntimeWarning FutureWarning
-            \ ImportWarning UnicodeWarning
+syntax keyword pythonExClass
+            \ ArithmeticError
+            \ AssertionError
+            \ AttributeError
+            \ BaseException
+            \ BufferError
+            \ BytesWarning
+            \ DeprecationWarning
+            \ EOFError
+            \ EnvironmentError
+            \ Exception
+            \ FloatingPointError
+            \ FutureWarning
+            \ GeneratorExit
+            \ IOError
+            \ ImportError
+            \ ImportWarning
+            \ IndentationError
+            \ IndexError
+            \ KeyError
+            \ KeyboardInterrupt
+            \ LookupError
+            \ MemoryError
+            \ NameError
+            \ NotImplementedError
+            \ OSError
+            \ OverflowError
+            \ PendingDepricationWarning
+            \ ReferenceError
+            \ RuntimeError
+            \ RuntimeWarning
+            \ StandardError
+            \ StopIteration
+            \ SyntaxError
+            \ SyntaxWarning
+            \ SystemError
+            \ SystemExit
+            \ TabError
+            \ TypeError
+            \ UnboundLocalError
+            \ UnicodeDecodeError
+            \ UnicodeEncodeError
+            \ UnicodeError
+            \ UnicodeTranslateError
+            \ UnicodeWarning
+            \ UserWarning
+            \ VMSError
+            \ ValueError
+            \ Warning
+            \ WindowsError
+            \ ZeroDivisionError
 
 " Builtins And Others:
 
 syntax keyword pythonSelf self cls
 
-syntax keyword pythonBuiltin __import__ abs all any ascii bin bool bytearray
-            \ bytes callable chr classmethod compile complex
-            \ delattr dict dir divmod enumerate eval exec
-            \ filter float format frozenset getattr globals
-            \ hasattr hash help hex id input int isinstance
-            \ issubclass iter len list locals map max
-            \ memoryview min next object oct open ord pow print
-            \ property range repr reversed round set setattr
-            \ slice sorted staticmethod str sum super tuple
-            \ type vars zip
-            \ nextgroup=pythonFuncParens
+syntax keyword pythonBuiltin nextgroup=pythonFuncParens
+            \ __import__
+            \ abs
+            \ all
+            \ any
+            \ ascii
+            \ bin
+            \ bool
+            \ bytearray
+            \ bytes
+            \ callable
+            \ chr
+            \ classmethod
+            \ compile
+            \ complex
+            \ delattr
+            \ dict
+            \ dir
+            \ divmod
+            \ enumerate
+            \ eval
+            \ exec
+            \ filter
+            \ float
+            \ format
+            \ frozenset
+            \ getattr
+            \ globals
+            \ hasattr
+            \ hash
+            \ help
+            \ hex
+            \ id
+            \ input
+            \ int
+            \ isinstance
+            \ issubclass
+            \ iter
+            \ len
+            \ list
+            \ locals
+            \ map
+            \ max
+            \ memoryview
+            \ min
+            \ next
+            \ object
+            \ oct
+            \ open
+            \ ord
+            \ pow
+            \ print
+            \ property
+            \ range
+            \ repr
+            \ reversed
+            \ round
+            \ set
+            \ setattr
+            \ slice
+            \ sorted
+            \ staticmethod
+            \ str
+            \ sum
+            \ super
+            \ tuple
+            \ type
+            \ vars
+            \ zip
 
 " Function Call:
 
@@ -129,7 +230,22 @@ syntax match pythonBadParentheses ")"
 syntax match pythonBadCurly       "}"
 syntax match pythonBadBrackets    "\]"
 
-syntax cluster pythonNotContained contains=pythonFuncName,pythonFuncArguments,pythonFunction,pythonClassName,pythonClassArguments,pythonClass,pythonTodo,@pythonStringContains,pythonStringRawEscape,pythonBytesEscape,pythonDecoratorArg,pythonDecorator,pythonCommentTitle,pythonShebang,pythonEncoding
+syntax cluster pythonNotContained contains=
+            \ pythonFuncName,
+            \ pythonFuncArguments,
+            \ pythonFunction,
+            \ pythonClassName,
+            \ pythonClassArguments,
+            \ pythonClass,
+            \ pythonTodo,
+            \ @pythonStringContains,
+            \ pythonStringRawEscape,
+            \ pythonBytesEscape,
+            \ pythonDecoratorArg,
+            \ pythonDecorator,
+            \ pythonCommentTitle,
+            \ pythonShebang,
+            \ pythonEncoding
 
 syntax region pythonParentheses matchgroup=pythonDelimiter start="("  end=")" transparent contains=ALLBUT,pythonBadParentheses,@pythonNotContained,pythonFuncParameter
 syntax region pythonCurly       matchgroup=pythonOperator start="{"  end="}"  transparent contains=ALLBUT,pythonBadCurly,@pythonNotContained,pythonFuncParameter
@@ -226,8 +342,9 @@ hi link pythonStringEscape          Special
 hi link pythonStringFormat          Special
 hi link pythonStringFormating       Special
 hi link pythonStringTriple          String
-hi link pythonStringRaw             Tag
-hi link pythonStringRawTriple       Tag
+hi link pythonStringRaw             String
+hi link pythonStringRawTriple       String
+hi link pythonStringRawEscape       Special
 hi link pythonTodo                  Todo
 
 " Syncronization:
