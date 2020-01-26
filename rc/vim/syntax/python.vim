@@ -1,7 +1,7 @@
 " Vim syntax file
 "
 " Author:        Filipe L B Correia <filipelbc@gmail.com>
-" Last Change:   2020 jan 26 12:13:17
+" Last Change:   2020 jan 26 12:21:52
 "
 " Language:      Python 3
 
@@ -214,6 +214,25 @@ syntax region pythonStringRaw matchgroup=pythonDelimiter start="[rR]\'" end="\'"
 syntax region pythonStringRawTriple matchgroup=pythonDelimiter start="[rR]\"\"\"" end="\"\"\"" contains=pythonStringRawEscape
 syntax region pythonStringRawTriple matchgroup=pythonDelimiter start="[rR]\'\'\'" end="\'\'\'" contains=pythonStringRawEscape
 
+" F Strings:
+
+syntax region pythonFStringFormat matchgroup=pythonDelimiter start="{" end="}" contained contains=ALLBUT,pythonBadCurly,@pythonNotContained,pythonFuncParameter,pythonComment
+syntax match pythonFStringFormat "{{\|}}" contained
+
+syntax cluster pythonFStringContains contains=pythonStringEscape,pythonFStringFormat
+
+syntax region pythonFString matchgroup=pythonDelimiter start="[fF]\=\"" end="\"" contains=@pythonFStringContains
+syntax region pythonFString matchgroup=pythonDelimiter start="[fF]\=\'" end="\'" contains=@pythonFStringContains
+
+syntax region pythonFStringTriple matchgroup=pythonDelimiter start="[fF]\=\"\"\"" end="\"\"\"" contains=@pythonFStringContains
+syntax region pythonFStringTriple matchgroup=pythonDelimiter start="[fF]\=\'\'\'" end="\'\'\'" contains=@pythonFStringContains
+
+syntax region pythonFStringRaw matchgroup=pythonDelimiter start="\([fF][Rr]\|[rR][fF]\)\"" end="\"" contains=pythonFStringFormat
+syntax region pythonFStringRaw matchgroup=pythonDelimiter start="\([fF][Rr]\|[rR][fF]\)\'" end="\'" contains=pythonFStringFormat
+
+syntax region pythonFStringRawTriple matchgroup=pythonDelimiter start="\([fF][Rr]\|[rR][fF]\)\"\"\"" end="\"\"\"" contains=pythonFStringFormat
+syntax region pythonFStringRawTriple matchgroup=pythonDelimiter start="\([fF][Rr]\|[rR][fF]\)\'\'\'" end="\'\'\'" contains=pythonFStringFormat
+
 " Bytes:
 
 syntax match pythonBytesEscape "\\." contained
@@ -239,6 +258,7 @@ syntax cluster pythonNotContained contains=
             \ pythonClass,
             \ pythonTodo,
             \ @pythonStringContains,
+            \ @pythonFStringContains,
             \ pythonStringRawEscape,
             \ pythonBytesEscape,
             \ pythonDecoratorArg,
@@ -345,6 +365,10 @@ hi link pythonStringTriple          String
 hi link pythonStringRaw             String
 hi link pythonStringRawTriple       String
 hi link pythonStringRawEscape       Special
+hi link pythonFString               String
+hi link pythonFStringTriple         String
+hi link pythonFStringRaw            String
+hi link pythonFStringRawTriple      String
 hi link pythonTodo                  Todo
 
 " Syncronization:
