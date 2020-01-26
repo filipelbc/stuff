@@ -1,7 +1,7 @@
 " Vim syntax file
 "
 " Author:        Filipe L B Correia <filipelbc@gmail.com>
-" Last Change:   2020 jan 26 12:21:52
+" Last Change:   2020 jan 26 12:41:39
 "
 " Language:      Python 3
 
@@ -182,7 +182,7 @@ syntax match pythonLineContinuation "\\$"
 syntax match pythonDot "\d\@<!\."
 syntax match pythonComma ","
 syntax match pythonColon ":"
-syntax match pythonOperator "[+=*/^~!&|/%><-]"
+syntax match pythonOperator "[+=*/^~!&|/%><-@]"
 
 " String Escape Sequences:
 
@@ -273,13 +273,9 @@ syntax region pythonBrackets    matchgroup=pythonOperator  start="\[" end="\]" t
 
 " Decorators:
 
-syntax match pythonDecorator "@" nextgroup=pythonDecoratorArg skipwhite
-
-syntax match pythonDecoratorArg "\h\w*\%(\.\h\w*\)*" contained contains=pythonDot nextgroup=pythonFuncParens skipwhite
+syntax match pythonDecorator "@\h\w*\%(\.\h\w*\)*" contains=pythonDot nextgroup=pythonFuncParens skipwhite
 
 " Function Arguments:
-
-syntax match pythonColon ":" contained
 
 syntax region pythonFuncParens matchgroup=pythonDelimiter start="(" end=")" contained transparent nextgroup=pythonColon skipwhite contains=ALLBUT,pythonBadParentheses,@pythonNotContained
 
@@ -336,8 +332,7 @@ hi link pythonCommentStart          Comment
 hi link pythonCommentTitle          CommentTitle
 hi link pythonConditional           Conditional
 hi link pythonConstant              Constant
-hi link pythonDecorator             Statement
-hi link pythonDecoratorArg          Type
+hi link pythonDecorator             Type
 hi link pythonDelimiter             Delimiter
 hi link pythonDot                   Operator
 hi link pythonEncoding              Statement
@@ -358,10 +353,10 @@ hi link pythonSelf                  Macro
 hi link pythonShebang               Statement
 hi link pythonStatement             Statement
 hi link pythonString                String
+hi link pythonStringTriple          String
 hi link pythonStringEscape          Special
 hi link pythonStringFormat          Special
 hi link pythonStringFormating       Special
-hi link pythonStringTriple          String
 hi link pythonStringRaw             String
 hi link pythonStringRawTriple       String
 hi link pythonStringRawEscape       Special
