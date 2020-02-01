@@ -1,7 +1,7 @@
 " Vim syntax file
 "
 " Author:        Filipe L B Correia <filipelbc@gmail.com>
-" Last Change:   2020 jan 26 17:12:41
+" Last Change:   2020 fev 01 17:38:00
 "
 " Language:      Python 3
 
@@ -182,7 +182,7 @@ syntax match pythonLineContinuation "\\$"
 syntax match pythonDot "\d\@<!\."
 syntax match pythonComma ","
 syntax match pythonColon ":"
-syntax match pythonOperator "[+=*/^~!&|/%><-@]"
+syntax match pythonOperator "[+=*/^~!&|/%><@-]"
 
 " String Escape Sequences:
 
