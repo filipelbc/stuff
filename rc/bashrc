@@ -222,6 +222,14 @@ then
 fi
 
 #===============================================================================
+# Git Subrepo
+
+if [ -f /files/git/other/git-subrepo/.rc ]
+then
+    source /files/git/other/git-subrepo/.rc
+fi
+
+#===============================================================================
 # Listing:
 
 source /files/git/filipelbc/stuff/sh/list.sh
