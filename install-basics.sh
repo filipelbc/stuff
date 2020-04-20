@@ -38,6 +38,9 @@ sudo apt-add-repository -yn "deb https://dl.yarnpkg.com/debian/ stable main"
 # NodeJS
 wget -q -O - "https://deb.nodesource.com/setup_12.x" | sudo bash -
 
+# Peek
+sudo apt-add-repository -yn "ppa:peek-developers/stable"
+
 # Update & Upgrade
 sudo apt-get -y update
 sudo apt-get -y upgrade
@@ -66,6 +69,7 @@ sudo apt-get -y install \
     libtool \
     mercurial \
     oracle-java8-installer \
+    peek \
     pinta \
     pwgen \
     python3-all \
