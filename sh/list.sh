@@ -1,7 +1,7 @@
 # Bash script file
 #
 # Author:        Filipe L B Correia <filipelbc@gmail.com>
-# Last Change:   2019 Apr 16 11:00:36
+# Last Change:   2020 Apr 21 11:24:02
 #
 # About:         functions for directory listing after cd'ing
 
@@ -85,7 +85,7 @@ list_print_dir () {
 }
 
 list_clear () {
-    echo -e '\033[H\033[2J'
+    echo -en '\033[H\033[2J'
 }
 
 #===============================================================================
