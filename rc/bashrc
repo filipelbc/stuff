@@ -126,15 +126,22 @@ dit_current_task_name() {
 }
 
 #===============================================================================
-# PS1:
+# Shell Prompt
 
-PS1='\[\e]0;\u @ \h: \w\a\]${debian_chroot:+($debian_chroot)}'
+move_cursor_to_timestamp_placeholder() {
+    tput cuu 2
+    tput cuf 7
+}
+
+PS0='\033[s$(move_cursor_to_timestamp_placeholder)\A\033[u'
+
+PS1='${debian_chroot:+($debian_chroot)}'
 
 if [ -n "$is_remote" ]; then
     PS1=$PS1$color_ssh'ssh'$color_normal' : '
 fi
 
-PS1=$PS1$color_user'\u'$color_normal' @ '$color_host'\h'$color_normal' : '$color_dir'\w'$color_normal'$(git_current_branch_string)$(dit_current_task_name)\n\$ '
+PS1="$PS1\A, --:-- $color_user\u$color_normal @ $color_host\h$color_normal : $color_dir\w$color_normal$(git_current_branch_string)$(dit_current_task_name)\n\$ "
 
 #===============================================================================
 # Aliases:
