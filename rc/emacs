@@ -1,5 +1,9 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/org")
 
+(eval-after-load "org"
+    '(require 'ox-gfm nil t)
+)
+
 (setq
     system-time-locale "C"
     org-html-postamble nil
@@ -8,6 +12,8 @@
 
     make-backup-files nil
     auto-save-default nil
+
+    org-plantuml-jar-path (expand-file-name "~/bin/java/plantuml.jar")
 )
 
 (org-babel-do-load-languages
@@ -15,5 +21,6 @@
         (python . t)
         (dot . t)
         (shell . t)
+        (plantuml . t)
     )
 )
