@@ -150,7 +150,7 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 
-alias tree='tree --dirsfirst -I ".git|node_modules"'
+alias tree='tree --dirsfirst -I ".git|node_modules|obj|bin"'
 alias uncrustify='uncrustify --replace --no-backup'
 
 alias :q='exit'
