@@ -76,6 +76,7 @@ sudo apt-get -y install \
     python3-pip \
     python3-virtualenv \
     rename \
+    shellcheck \
     software-properties-common \
     ssh \
     terminator \
