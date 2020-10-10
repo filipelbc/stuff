@@ -200,10 +200,15 @@ cd $other
 sudo wget -q -O /usr/share/emacs/site-lisp/htmlize.el 'https://raw.githubusercontent.com/hniksic/emacs-htmlize/master/htmlize.el'
 sudo wget -q -O /usr/share/emacs/site-lisp/ox-gfm.el 'https://raw.githubusercontent.com/larstvei/ox-gfm/master/ox-gfm.el'
 
-# Diff so fancy
-cd $other
-wget -q -O diff-so-fancy "https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy"
-chmod +x diff-so-fancy
+# Bat & Delta
+
+wget -q https://github.com/sharkdp/bat/releases/download/v0.16.0/bat-musl_0.16.0_amd64.deb
+sudo dpkg -i bat-musl_*.deb
+
+wget -q https://github.com/dandavison/delta/releases/download/0.4.3/git-delta_0.4.3_amd64.deb
+sudo dpkg -i git-delta_*.deb
+
+rm *.deb
 
 # Plantuml
 cd ~/bin

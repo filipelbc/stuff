@@ -6,7 +6,10 @@
     editor = vim
     whitespace = fix,-indent-with-non-tab,trailing-space
     excludesfile = ~/.gitignore_global
-    pager = "diff-so-fancy | less --tabs=4 -RFX"
+    pager = delta --syntax-theme 'Solarized (light)' --side-by-side --hunk-header-decoration-style ''
+
+[interactive]
+    diffFilter = delta --color-only
 
 [diff]
     tool = vimdiff
@@ -14,6 +17,9 @@
 
 [difftool]
     prompt = false
+
+[interactive]
+    diffFilter = delta --syntax-theme 'Solarized (light)' --color-only
 
 [color]
     branch = auto
