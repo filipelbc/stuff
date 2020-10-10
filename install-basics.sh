@@ -38,7 +38,7 @@ sudo apt-add-repository -yn "deb https://dl.yarnpkg.com/debian/ stable main"
 # NodeJS
 wget -q -O - "https://deb.nodesource.com/setup_12.x" | sudo bash -
 
-# Peek
+# Peek (screen recording tool)
 sudo apt-add-repository -yn "ppa:peek-developers/stable"
 
 # Update & Upgrade
@@ -98,17 +98,19 @@ sudo sed -i -e 's/quiet splash//' /etc/default/grub
 sudo update-grub
 
 # Add user to docker group
-sudo gpasswd -a $USER docker
+sudo gpasswd -a "$USER" docker
 
 # Docker-compose
-sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/1.25.1/docker-compose-$(uname -s)-$(uname -m)"
+sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)"
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Python development helpers
-pip3 install --user pylint autopep8 flake8 pep8-naming
+pip3 install --upgrade --user \
+    pylint autopep8 flake8 pep8-naming \
+    tabulate requests
 
 # Create symlinks
-stuff=$PWD
+stuff="$PWD"
 
 mkdir -p ~/.config/terminator
 
