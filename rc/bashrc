@@ -230,6 +230,15 @@ then
 fi
 
 #===============================================================================
+# Workaround dotnet cli bug https://github.com/microsoft/vstest/issues/2282
+
+dotnet() {
+    local before=$(stty -g)
+    $(which dotnet) "$@"
+    stty "$before"
+}
+
+#===============================================================================
 # Listing:
 
 source /files/git/filipelbc/stuff/sh/list.sh
