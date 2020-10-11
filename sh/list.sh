@@ -1,7 +1,7 @@
 # Bash script file
 #
 # Author:        Filipe L B Correia <filipelbc@gmail.com>
-# Last Change:   2020 Apr 21 11:24:02
+# Last Change:   2020 Oct 10 22:59:28
 #
 # About:         functions for directory listing after cd'ing
 
@@ -22,41 +22,30 @@ fi
 # Helpers:
 
 list_hidden () {
-    list_show_hidden=$(( 1 - $list_show_hidden ))
+    list_show_hidden=$(( 1 - list_show_hidden ))
     list
 }
 
 list_details () {
-    list_show_details=$(( 1 - $list_show_details ))
+    list_show_details=$(( 1 - list_show_details ))
     list
 }
 
 list_sizes () {
-    list_show_sizes=$(( 1 - $list_show_sizes ))
+    list_show_sizes=$(( 1 - list_show_sizes ))
     list
 }
 
-list_get_full_path () {
-    if [ -d "$1" ]; then
-        pushd "$1" >/dev/null
-        pwd
-        popd >/dev/null
-    fi
-}
-
 list_print_line () {
-    c="─"
-    if [ "$#" -eq 1 ]; then
-        c=$1
-    fi
+    local c=${1:-"─"}
 
     echo -en $list_color_line
-    for i in $(seq 1 $COLUMNS); do echo -n $c; done
+    eval "printf '%.s$c' {1..$COLUMNS}"
     echo -e $list_color_normal
 }
 
 list_print_ls () {
-    o=""
+    local o=""
 
     if [ $list_show_details -eq 1 ]; then
         o="$o -lh"
@@ -78,7 +67,7 @@ list_print_pwd () {
 
 list_print_dir () {
     list_print_line
-    p=$(list_get_full_path "$1")
+    local p=$(readlink -f "$1")
     echo -e $list_color_dir$p$list_color_normal
     list_print_line "-"
     list_print_ls "$p"
