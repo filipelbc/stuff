@@ -5,9 +5,16 @@
 pattern=$1
 shift
 
-grep --color=auto -iIrn \
+grep \
+    --ignore-case \
+    --recursive \
+    --binary-files=without-match \
+    --line-number \
+    --color=auto \
     --exclude-dir=.git \
     --exclude-dir=node_modules \
     --exclude-dir=bin \
     --exclude-dir=obj \
-    "$pattern" $@
+    --exclude-dir=__pycache__ \
+    "$pattern" \
+    "$@"

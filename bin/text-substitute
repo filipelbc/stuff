@@ -2,7 +2,19 @@
 
 [ "$#" -lt 3 ] && echo "text-substitute <pattern> <replacement> <files>" && exit
 
-g="grep --color=auto --exclude-dir=.git --exclude-dir=node_modules"
+function g() {
+    grep \
+        --recursive \
+        --binary-files=without-match \
+        --color=auto \
+        --exclude-dir=.git \
+        --exclude-dir=node_modules \
+        --exclude-dir=bin \
+        --exclude-dir=obj \
+        --exclude-dir=__pycache__ \
+        "$pattern" \
+        "$@"
+}
 
 pattern=$1
 shift
@@ -10,13 +22,15 @@ shift
 replacement=s/$pattern/$1/g
 shift
 
-$g -Irn "$pattern" $@
+g "$pattern" --line-number "$@"
 
-read -p "Apply substitution? [yes/no] " response
+read -rp "Apply substitution? [yes/no] " response
+
 case $response in
     yes)
-        $g -Irl "$pattern" $@ | xargs sed -i -e "$replacement"
+        g "$pattern" --files-with-matches "$@" | xargs sed -i -e "$replacement"
         ;;
     *)
+        echo "Aborted"
         ;;
 esac
