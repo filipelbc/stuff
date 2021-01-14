@@ -1,1 +1,33 @@
-/files/git/brickabode/ba/code-standards/org/scripts/orglint
+#!/bin/bash
+
+# This script will check and list warning on your .org file
+# The script was based on the code discussed in the link below:
+# Reference: https://emacs.stackexchange.com/questions/42196/how-to-call-org-lint-against-org-mode-file-from-command-line
+
+: ${ORG_EMACS_EL:='~/.emacs'}
+
+if [ -f "$1" ]
+then
+   emacs --batch --load $ORG_EMACS_EL -f package-initialize --eval "(add-hook 'org-mode-hook
+       (lambda ()
+         (let* ((file-name (current-buffer))
+           (Col1 'Line)
+           (Col2 'Warning)
+           (lint-report (org-lint)))
+           (setq total-warning (length(cdr lint-report)))
+	   (princ (format \"File: %s\n\" file-name))
+           (if (> total-warning 0)
+               (progn  (princ (format \"%6s | %7s\n\" Col1 Col2))
+                   (dolist (element lint-report)
+                       (setq report (car (cdr element)))
+                       (princ (format \"%6s | %7s\n\" (seq-elt report 0) (seq-elt report 2))))
+	           (princ (format \"Total warning: %d\n\" (+ 1 total-warning)))
+		   (error (kill-emacs 1))
+	       )
+               (princ (format \"No warning, this file is ok.\n\")))
+	)))" "$1"
+
+else
+    echo "$1 not found."
+    exit 1
+fi
