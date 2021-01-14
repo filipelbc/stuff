@@ -36,7 +36,7 @@ wget -q -O - "https://dl.yarnpkg.com/debian/pubkey.gpg" | sudo apt-key add -
 sudo apt-add-repository -yn "deb https://dl.yarnpkg.com/debian/ stable main"
 
 # NodeJS
-wget -q -O - "https://deb.nodesource.com/setup_12.x" | sudo bash -
+wget -q -O - "https://deb.nodesource.com/setup_14.x" | sudo bash -
 
 # Peek (screen recording tool)
 sudo apt-add-repository -yn "ppa:peek-developers/stable"
@@ -58,7 +58,7 @@ sudo apt-get -y install \
     code \
     curl \
     docker-ce \
-    dotnet-sdk-2.1 \
+    dotnet-sdk-5.0 \
     emacs-nox \
     feh \
     git \
@@ -73,7 +73,6 @@ sudo apt-get -y install \
     mercurial \
     oracle-java8-installer \
     peek \
-    pinta \
     pwgen \
     python3-all \
     python3-pip \
@@ -109,8 +108,12 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 # Python development helpers
 pip3 install --upgrade --user \
-    pylint autopep8 flake8 pep8-naming \
-    tabulate requests
+    autopep8 \
+    flake8 \
+    pep8-naming \
+    pylint \
+    requests \
+    tabulate
 
 # Create symlinks
 stuff="$PWD"
@@ -205,10 +208,10 @@ sudo wget -q -O /usr/share/emacs/site-lisp/ox-gfm.el 'https://raw.githubusercont
 
 # Bat & Delta
 
-wget -q https://github.com/sharkdp/bat/releases/download/v0.16.0/bat-musl_0.16.0_amd64.deb
+wget -q https://github.com/sharkdp/bat/releases/download/v0.17.1/bat-musl_0.17.1_amd64.deb
 sudo dpkg -i bat-musl_*.deb
 
-wget -q https://github.com/dandavison/delta/releases/download/0.4.3/git-delta_0.4.3_amd64.deb
+wget -q https://github.com/dandavison/delta/releases/download/0.4.4/git-delta_0.4.4_amd64.deb
 sudo dpkg -i git-delta_*.deb
 
 rm *.deb
