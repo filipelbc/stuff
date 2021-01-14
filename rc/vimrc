@@ -190,3 +190,8 @@ nnoremap <leader><leader>c      :noautocmd call CloseQLS()<CR>
 
 " clean search highlight
 nnoremap <leader><space>        :noh<CR>
+
+" workaround a bug where scape sequences are rendered when the side bar is
+" updated
+set t_TE=
+set t_TI=
