@@ -41,6 +41,9 @@ wget -q -O - "https://deb.nodesource.com/setup_12.x" | sudo bash -
 # Peek (screen recording tool)
 sudo apt-add-repository -yn "ppa:peek-developers/stable"
 
+# Inkscape
+sudo apt-add-repository -yn "ppa:inkscape.dev/stable"
+
 # Update & Upgrade
 sudo apt-get -y update
 sudo apt-get -y upgrade
