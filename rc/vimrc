@@ -31,6 +31,8 @@ Plugin 'filipelbc/orgmode.vim'
 Plugin 'kalafut/vim-taskjuggler'
 " additional ssh files
 Plugin 'qnighy/vim-ssh-annex'
+" postgresql
+Plugin 'lifepillar/pgsql.vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -158,6 +160,9 @@ let g:formatters_javascript = ['jsbeautify_javascript']
 
 let g:formatdef_elmformat_elm = '"elm-format --stdin"'
 let g:formatters_elm = ['elmformat_elm']
+
+" PostgreSQL
+let g:sql_type_default = 'pgsql'
 
 "===============================================================================
 " Maps:
