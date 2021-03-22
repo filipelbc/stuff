@@ -208,11 +208,11 @@ sudo wget -q -O /usr/share/emacs/site-lisp/ox-gfm.el 'https://raw.githubusercont
 
 # Bat & Delta
 
-wget -q https://github.com/sharkdp/bat/releases/download/v0.17.1/bat-musl_0.17.1_amd64.deb
+wget -q https://github.com/sharkdp/bat/releases/download/v0.18.0/bat-musl_0.18.0_amd64.deb
 sudo dpkg -i bat-musl_*.deb
 
-wget -q https://github.com/dandavison/delta/releases/download/0.4.4/git-delta_0.4.4_amd64.deb
-sudo dpkg -i git-delta_*.deb
+wget -q https://github.com/dandavison/delta/releases/download/0.6.0/git-delta-musl_0.6.0_amd64.deb
+sudo dpkg -i git-delta-musl_*.deb
 
 rm *.deb
 
