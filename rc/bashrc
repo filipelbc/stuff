@@ -235,6 +235,14 @@ then
 fi
 
 #===============================================================================
+# Rust
+
+if [ -f "$HOME/.cargo/env" ]
+then
+    source "$HOME/.cargo/env"
+fi
+
+#===============================================================================
 # Workaround dotnet cli bug https://github.com/microsoft/vstest/issues/2282
 
 dotnet() {

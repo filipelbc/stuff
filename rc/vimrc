@@ -27,6 +27,8 @@ Plugin 'lilydjwg/colorizer'
 Plugin 'sheerun/vim-polyglot'
 " org mode
 Plugin 'filipelbc/orgmode.vim'
+" rust
+Plugin 'rust-lang/rust.vim'
 " task juggler
 Plugin 'kalafut/vim-taskjuggler'
 " additional ssh files
