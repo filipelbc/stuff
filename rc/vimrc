@@ -20,6 +20,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'preservim/nerdtree'
 " colors
 Plugin 'lilydjwg/colorizer'
 " polyglot
@@ -190,6 +191,8 @@ nnoremap <leader><leader>c      :noautocmd call CloseQLS()<CR>
 
 " clean search highlight
 nnoremap <leader><space>        :noh<CR>
+
+nnoremap <C-t> :NERDTree<CR>
 
 " workaround a bug where scape sequences are rendered when the side bar is
 " updated
