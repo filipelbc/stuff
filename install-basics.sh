@@ -15,6 +15,11 @@ sudo apt-get -y purge \
     ristretto \
     thunderbird
 
+# PostgreSQL
+
+wget -q -O - "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | sudo apt-key add -
+sudo apt-add-repository -yn "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main"
+
 # Java
 sudo apt-add-repository -yn ppa:linuxuprising/java
 
