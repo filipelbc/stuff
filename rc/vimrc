@@ -205,3 +205,6 @@ nnoremap <C-t> :NERDTree<CR>
 " updated
 set t_TE=
 set t_TI=
+
+" less visible 'listchars'
+hi SpecialKey guifg=#a9bdc4 cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guibg=NONE
