@@ -181,7 +181,7 @@ man() {
 }
 
 fdiff() {
-    git diff --no-index "$1" "$2"
+    delta --syntax-theme 'Solarized (light)' --side-by-side --hunk-header-decoration-style '' "$1" "$2"
 }
 
 # My functions
