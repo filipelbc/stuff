@@ -16,7 +16,7 @@ sudo apt-get -y purge \
     thunderbird
 
 # Java
-sudo apt-add-repository -yn ppa:webupd8team/java
+sudo apt-add-repository -yn ppa:linuxuprising/java
 
 # Docker
 wget -q -O - "https://download.docker.com/linux/ubuntu/gpg" | sudo apt-key add -
@@ -71,7 +71,7 @@ sudo apt-get -y install \
     jq \
     libtool \
     mercurial \
-    oracle-java8-installer \
+    oracle-java16-installer \
     peek \
     pwgen \
     python3-all \
