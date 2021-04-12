@@ -221,6 +221,13 @@ sudo dpkg -i git-delta-musl_*.deb
 
 rm *.deb
 
+# Tokei
+
+wget -q https://github.com/XAMPPRocky/tokei/releases/download/v12.1.2/tokei-x86_64-unknown-linux-musl.tar.gz
+tar -xzf tokei-*.tar.gz
+mv tokei ~/bin
+rm tokei-*.tar.gz
+
 # Plantuml
 cd ~/bin
 mkdir -p java
