@@ -79,7 +79,7 @@ sudo apt-get -y install \
     oracle-java16-installer \
     peek \
     pwgen \
-    python3-all \
+    python3-dev \
     python3-pip \
     python3-virtualenv \
     rename \
