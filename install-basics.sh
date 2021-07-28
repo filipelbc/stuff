@@ -43,6 +43,10 @@ sudo apt-add-repository -yn "deb [arch=amd64] https://packages.microsoft.com/rep
 wget -q -O - "https://dl.yarnpkg.com/debian/pubkey.gpg" | sudo apt-key add -
 sudo apt-add-repository -yn "deb https://dl.yarnpkg.com/debian/ stable main"
 
+# Cmake
+wget -q -O - "https://apt.kitware.com/keys/kitware-archive-latest.asc" | sudo apt-key add -
+sudo apt-add-repository -yn "deb https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main"
+
 # NodeJS
 wget -q -O - "https://deb.nodesource.com/setup_14.x" | sudo bash -
 
