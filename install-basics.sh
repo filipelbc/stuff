@@ -212,7 +212,7 @@ then
     git clone https://code.orgmode.org/bzg/org-mode.git
 fi
 cd org-mode
-git checkout master
+git checkout maint
 git pull
 git clean -xdf
 make
