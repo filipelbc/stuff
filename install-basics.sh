@@ -16,9 +16,12 @@ sudo apt-get -y purge \
     thunderbird
 
 # PostgreSQL
-
 wget -q -O - "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | sudo apt-key add -
 sudo apt-add-repository -yn "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main"
+
+# pgAdmin4
+wget -q -O - "https://www.pgadmin.org/static/packages_pgadmin_org.pub" | sudo apt-key add -
+sudo apt-add-repository -yn "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main"
 
 # Java
 sudo apt-add-repository -yn ppa:linuxuprising/java
