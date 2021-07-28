@@ -150,8 +150,9 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 
-alias tree='tree --dirsfirst -I ".git|node_modules|obj|bin|__pycache__"'
-alias uncrustify='uncrustify --replace --no-backup'
+alias tree='tree --dirsfirst -I ".git|node_modules|obj|bin|__pycache__|venv"'
+alias feh='feh --scale-down --auto-zoom'
+alias bat="bat --theme 'Solarized (light)'"
 
 alias :q='exit'
 
@@ -220,11 +221,6 @@ if [ -d "$HOME/.yarn/bin" ]
 then
     export PATH="$HOME/.yarn/bin:$PATH"
 fi
-
-#===============================================================================
-# Bat
-
-alias bat="bat --theme 'Solarized (light)'"
 
 #===============================================================================
 # Git Subrepo
