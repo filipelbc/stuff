@@ -134,7 +134,7 @@ if [ -n "$is_remote" ]; then
     PS1=$PS1$color_ssh'ssh'$color_normal' : '
 fi
 
-PS1=$PS1$color_user'\u'$color_normal' @ '$color_host'\h'$color_normal' : '$color_dir'\w'$color_normal'$(git_current_branch_string)$(dit_current_task_name)\n\$ '
+PS1=$PS1$color_user'\u'$color_normal' @ '$color_host'\h'$color_normal' : '$color_dir'\w'$color_normal'$(git_current_branch_string)\n\$ '
 
 #===============================================================================
 # Aliases:
