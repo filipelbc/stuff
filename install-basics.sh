@@ -52,6 +52,10 @@ sudo apt-add-repository -yn "ppa:peek-developers/stable"
 # Inkscape
 sudo apt-add-repository -yn "ppa:inkscape.dev/stable"
 
+# Kubernetes
+wget -q -O - "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | sudo apt-key add -
+sudo apt-add-repository -yn "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+
 # Update & Upgrade
 sudo apt-get -y update
 sudo apt-get -y upgrade
