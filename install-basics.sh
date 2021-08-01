@@ -117,6 +117,9 @@ pip3 install --upgrade --user \
     requests \
     tabulate
 
+# Latest NPM
+sudo npm install -g npm@latest
+
 # Create symlinks
 stuff="$PWD"
 
