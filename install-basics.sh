@@ -151,12 +151,6 @@ other=$stuff/../../other
 
 mkdir -p $other
 
-# FIXME: figure out explicit list of dependencies
-echo "Have you enabled the deb-src repositories?"
-echo "If not, please enable and run 'apt-get -y update' before continuing."
-echo "Press any key to continue."
-read
-
 # Vim
 sudo apt-get build-dep vim
 
