@@ -2,91 +2,81 @@
 
 set -ex
 
-# Remove useless stuff
-sudo apt-get -y purge \
-    brltty-x11 \
-    brltty \
-    espeak \
-    gnome-accessibility-themes \
-    light-locker \
-    parole \
-    pidgin-otr \
-    pidgin \
-    ristretto \
-    thunderbird
+# Add basic stuff
+sudo apt -y install \
+    apt-transport-https \
+    ca-certificates \
+    git \
+    gnupg \
+    software-properties-common \
+    wget
+
+release=$(lsb_release -cs)
 
 # PostgreSQL
 wget -q -O - "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | sudo apt-key add -
-sudo apt-add-repository -yn "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main"
+sudo apt-add-repository -y "deb http://apt.postgresql.org/pub/repos/apt/ ${release}-pgdg main"
 
 # pgAdmin4
 wget -q -O - "https://www.pgadmin.org/static/packages_pgadmin_org.pub" | sudo apt-key add -
-sudo apt-add-repository -yn "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main"
+sudo apt-add-repository -y "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/${release} pgadmin4 main"
 
 # Java
-sudo apt-add-repository -yn ppa:linuxuprising/java
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 73C3DB2A
+sudo apt-add-repository -y "deb http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main"
 
 # Docker
 wget -q -O - "https://download.docker.com/linux/ubuntu/gpg" | sudo apt-key add -
-sudo apt-add-repository -yn "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-add-repository -y "deb [arch=amd64] https://download.docker.com/linux/debian ${release} stable"
 
 # Google Chrome
 wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
-sudo apt-add-repository -yn "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+sudo apt-add-repository -y "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
 
-# VS Code & Dotnet
+# VS Code
 wget -q -O - "https://packages.microsoft.com/keys/microsoft.asc" | sudo apt-key add -
-sudo apt-add-repository -yn "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-sudo apt-add-repository -yn "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-$(lsb_release -cs)-prod $(lsb_release -cs) main"
+sudo apt-add-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+
+# .NET
+wget -q "https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
 
 # Yarn
 wget -q -O - "https://dl.yarnpkg.com/debian/pubkey.gpg" | sudo apt-key add -
-sudo apt-add-repository -yn "deb https://dl.yarnpkg.com/debian/ stable main"
+sudo apt-add-repository -y "deb https://dl.yarnpkg.com/debian/ stable main"
 
-# Cmake
-wget -q -O - "https://apt.kitware.com/keys/kitware-archive-latest.asc" | sudo apt-key add -
-sudo apt-add-repository -yn "deb https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main"
+# Kubernetes
+wget -q -O - "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | sudo apt-key add -
+sudo apt-add-repository -y "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 
 # NodeJS
 wget -q -O - "https://deb.nodesource.com/setup_14.x" | sudo bash -
 
-# Peek (screen recording tool)
-sudo apt-add-repository -yn "ppa:peek-developers/stable"
-
-# Inkscape
-sudo apt-add-repository -yn "ppa:inkscape.dev/stable"
-
-# Kubernetes
-wget -q -O - "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | sudo apt-key add -
-sudo apt-add-repository -yn "deb http://apt.kubernetes.io/ kubernetes-xenial main"
-
 # Update & Upgrade
-sudo apt-get -y update
-sudo apt-get -y upgrade
+sudo apt -y update
+sudo apt -y upgrade
 
 # Install useful stuff
 sudo apt-get -y install \
-    apt-transport-https \
     autotools-dev \
     build-essential \
-    ca-certificates \
-    cmake \
     code \
     curl \
     docker-ce \
     dotnet-sdk-5.0 \
     emacs-nox \
     feh \
-    git \
     google-chrome-stable \
     gparted \
     graphviz \
-    gthumb \
     htop \
     intltool \
     jq \
+    libreoffice \
     libtool \
-    mercurial \
+    nodejs \
+    obs-studio \
     oracle-java16-installer \
     peek \
     pwgen \
@@ -95,24 +85,20 @@ sudo apt-get -y install \
     python3-virtualenv \
     rename \
     shellcheck \
-    software-properties-common \
-    ssh \
     terminator \
     texinfo \
     tree \
-    unrar \
-    usb-creator-gtk \
-    valgrind \
     vlc \
     xclip \
-    xscreensaver \
-    xvfb
+    xscreensaver
+
+sudo apt -y autoremove
 
 # Remove redundant entries
 sudo sed -i -e '/google/d' -e '/vscode/d' /etc/apt/sources.list
 
 # Remove splash screen
-sudo sed -i -e 's/quiet splash//' /etc/default/grub
+sudo sed -i -e 's/"quiet"/""/' /etc/default/grub
 sudo update-grub
 
 # Add user to docker group
