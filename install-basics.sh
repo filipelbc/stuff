@@ -105,7 +105,7 @@ sudo update-grub
 sudo gpasswd -a "$USER" docker
 
 # Docker-compose
-sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/1.28.6/docker-compose-$(uname -s)-$(uname -m)"
+sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)"
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Python development helpers
