@@ -199,6 +199,11 @@ export DOCKER_USER=$(id -u $USER)
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 #===============================================================================
+# ~/bin
+
+export PATH="$HOME/bin:$PATH"
+
+#===============================================================================
 # Pyenv
 
 export PYENV_ROOT="$HOME/.pyenv"
