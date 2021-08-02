@@ -5,6 +5,7 @@ set -ex
 # Add basic stuff
 sudo apt -y install \
     apt-transport-https \
+    bash-completion \
     ca-certificates \
     elementary-xfce-icon-theme \
     git \
