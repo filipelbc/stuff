@@ -40,6 +40,9 @@ Plugin 'evanleck/vim-svelte'
 Plugin 'pangloss/vim-javascript'
 call vundle#end()
 
+" Workaround weird slowness in insert mode
+let g:polyglot_disabled = ['org']
+
 filetype plugin indent on
 
 "===============================================================================
