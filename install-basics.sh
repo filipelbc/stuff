@@ -6,10 +6,17 @@ set -ex
 sudo apt -y install \
     apt-transport-https \
     ca-certificates \
+    elementary-xfce-icon-theme \
     git \
     gnupg \
+    greybird-gtk-theme \
     software-properties-common \
     wget
+
+# Set desktop theme
+xfconf-query -c xsettings -p /Net/ThemeName -s "Greybird"
+xfconf-query -c xsettings -p /Net/IconThemeName -s "elementary-xfce-dark"
+xfconf-query -c xfwm4 -p /general/theme -s "Greybird"
 
 release=$(lsb_release -cs)
 
