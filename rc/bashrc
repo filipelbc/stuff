@@ -232,7 +232,7 @@ fi
 
 if [ -f /files/git/other/git-subrepo/.rc ]
 then
-    source /files/git/other/git-subrepo/.rc
+    . /files/git/other/git-subrepo/.rc
 fi
 
 #===============================================================================
@@ -240,7 +240,7 @@ fi
 
 if [ -f "$HOME/.cargo/env" ]
 then
-    source "$HOME/.cargo/env"
+    . "$HOME/.cargo/env"
 fi
 
 #===============================================================================
@@ -255,6 +255,6 @@ dotnet() {
 #===============================================================================
 # Listing:
 
-source /files/git/filipelbc/stuff/sh/list.sh
+. /files/git/filipelbc/stuff/sh/list.sh
 
 list
