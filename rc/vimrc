@@ -27,6 +27,8 @@ Plugin 'lilydjwg/colorizer'
 Plugin 'sheerun/vim-polyglot'
 " org mode
 Plugin 'filipelbc/orgmode.vim'
+" Jinja
+Plugin 'Glench/Vim-Jinja2-Syntax'
 " rust
 Plugin 'rust-lang/rust.vim'
 " task juggler
