@@ -50,7 +50,8 @@ if [ "$1" == "-i" ]; then
     shift
 fi
 
-for i in $@; do
+for i in "$@"
+do
     file="$i"
 
     if [ "$file" != "-" ] && [ ! -f "$file" ]; then

@@ -6,28 +6,46 @@
 
 : ${ORG_EMACS_EL:='~/.emacs'}
 
-if [ -f "$1" ]
-then
-   emacs --batch --load $ORG_EMACS_EL -f package-initialize --eval "(add-hook 'org-mode-hook
-       (lambda ()
-         (let* ((file-name (current-buffer))
-           (Col1 'Line)
-           (Col2 'Warning)
-           (lint-report (org-lint)))
-           (setq total-warning (length(cdr lint-report)))
-	   (princ (format \"File: %s\n\" file-name))
-           (if (> total-warning 0)
-               (progn  (princ (format \"%6s | %7s\n\" Col1 Col2))
-                   (dolist (element lint-report)
-                       (setq report (car (cdr element)))
-                       (princ (format \"%6s | %7s\n\" (seq-elt report 0) (seq-elt report 2))))
-	           (princ (format \"Total warning: %d\n\" (+ 1 total-warning)))
-		   (error (kill-emacs 1))
-	       )
-               (princ (format \"No warning, this file is ok.\n\")))
-	)))" "$1"
-
-else
-    echo "$1 not found."
+die() {
+    >&2 echo "$@"
     exit 1
-fi
+}
+
+lint() {
+    echo "File: $1"
+
+    emacs --batch -f package-initialize --eval "(add-hook 'org-mode-hook
+      (lambda ()
+          (let* (
+            (Col1 'Line)
+            (Col3 'Issue)
+            (lint-report (org-lint))
+            )
+          (if (car lint-report)
+            (progn
+              (princ (format \"%6s  %s\n\" Col1 Col3))
+              (dolist (element lint-report)
+                (setq report (car (cdr element)))
+                (princ (format \"%6s  %s\n\" (elt report 0) (elt report 2))))
+              (error (kill-emacs 1))
+            )
+          )
+      )))" "$1"
+}
+
+r=0
+
+for i in "$@"
+do
+    if [ -f "$i" ]
+    then
+        if ! lint "$i"
+        then
+            r=1
+        fi
+    else
+        die "File not found: $i"
+    fi
+done
+
+exit $r
