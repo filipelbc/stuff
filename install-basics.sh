@@ -58,6 +58,9 @@ sudo apt-add-repository -y "deb https://dl.yarnpkg.com/debian/ stable main"
 wget -q -O - "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | sudo apt-key add -
 sudo apt-add-repository -y "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 
+# Google Cloud SDK
+sudo apt-add-repository -y "deb https://packages.cloud.google.com/apt cloud-sdk main"
+
 # NodeJS
 wget -q -O - "https://deb.nodesource.com/setup_14.x" | sudo bash -
 
