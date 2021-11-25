@@ -244,13 +244,12 @@ then
 fi
 
 #===============================================================================
-# Workaround dotnet cli bug https://github.com/microsoft/vstest/issues/2282
+# .NET tools
 
-dotnet() {
-    local before=$(stty -g)
-    $(which dotnet) "$@"
-    stty "$before"
-}
+if [ -d "$HOME/.dotnet/tools" ]
+then
+    export PATH="$HOME/.dotnet/tools:$PATH"
+fi
 
 #===============================================================================
 # Listing:
