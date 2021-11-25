@@ -1,7 +1,7 @@
 " Vim syntax file
 "
 " Author:        Filipe L B Correia <filipelbc@gmail.com>
-" Last Change:   2020 fev 01 17:38:00
+" Last Change:   2021 Sep 22 13:17:32
 "
 " Language:      Python 3
 
@@ -107,6 +107,7 @@ syntax keyword pythonBuiltin nextgroup=pythonFuncParens
             \ ascii
             \ bin
             \ bool
+            \ breakpoint
             \ bytearray
             \ bytes
             \ callable
@@ -315,6 +316,14 @@ syntax match pythonCommentStart "\%^#\%(.*\n#\)\=.*$" contains=pythonTodo,python
 syntax match pythonShebang "\%^#!.*$" contained
 
 syntax match pythonEncoding "^#.*coding[:=].*$" contained
+
+" Embedded:
+
+"syntax include @SQL syntax/sql.vim
+"
+"syn region embeddedSql contains=@SQL containedin=pythonStringTriple contained
+"    \ start="\v(ALTER|BEGIN|CALL|COMMENT|COMMIT|CONNECT|CREATE|DELETE|DROP|END|EXPLAIN|EXPORT|GRANT|IMPORT|INSERT|LOAD|LOCK|MERGE|REFRESH|RENAME|REPLACE|REVOKE|ROLLBACK|SELECT|SET|TRUNCATE|UNLOAD|UNSET|UPDATE|UPSERT)"
+"    \ end=";"
 
 " Highlight:
 
