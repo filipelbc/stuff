@@ -203,12 +203,12 @@ python3 ./install.py --ts-completer --rust-completer
 cd $other
 if [ ! -d org-mode ]
 then
-    git clone https://code.orgmode.org/bzg/org-mode.git
+    git clone https://git.savannah.gnu.org/git/emacs/org-mode.git
 fi
 cd org-mode
-git checkout maint
 git pull
 git clean -xdf
+make autoloads
 make
 sudo make install
 
@@ -217,17 +217,17 @@ sudo wget -q -O /usr/share/emacs/site-lisp/htmlize.el 'https://raw.githubusercon
 sudo wget -q -O /usr/share/emacs/site-lisp/ox-gfm.el 'https://raw.githubusercontent.com/larstvei/ox-gfm/master/ox-gfm.el'
 
 # Bat
-wget -q https://github.com/sharkdp/bat/releases/download/v0.18.0/bat-musl_0.18.0_amd64.deb -O bat.deb
+wget -q -O bat.deb 'https://github.com/sharkdp/bat/releases/download/v0.18.3/bat-musl_0.18.3_amd64.deb'
 sudo dpkg -i bat.deb
 rm bat.deb
 
 # Delta
-wget -q https://github.com/dandavison/delta/releases/download/0.6.0/git-delta-musl_0.6.0_amd64.deb -O delta.deb
+wget -q -O delta.deb 'https://github.com/dandavison/delta/releases/download/0.10.1/git-delta-musl_0.10.1_amd64.deb'
 sudo dpkg -i delta.deb
 rm delta.deb
 
 # Tokei
-wget -q https://github.com/XAMPPRocky/tokei/releases/download/v12.1.2/tokei-x86_64-unknown-linux-musl.tar.gz -O tokei.tar.gz
+wget -q -O tokei.tar.gz 'https://github.com/XAMPPRocky/tokei/releases/download/v12.1.2/tokei-x86_64-unknown-linux-musl.tar.gz'
 tar -xzf tokei.tar.gz
 mv tokei ~/bin
 rm tokei.tar.gz
@@ -236,7 +236,7 @@ rm tokei.tar.gz
 cd ~/bin
 mkdir -p java
 rm -rf java/*
-wget -q -O java/plantuml.jar "https://ufpr.dl.sourceforge.net/project/plantuml/plantuml.jar"
+wget -q -O java/plantuml.jar 'https://ufpr.dl.sourceforge.net/project/plantuml/plantuml.jar'
 
 # Back to stuff
 cd $stuff
