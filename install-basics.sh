@@ -137,18 +137,18 @@ stuff="$PWD"
 mkdir -p ~/.config/terminator
 
 for i in bashrc \
-         config/flake8 \
-         config/pylintrc \
-         config/pep8 \
-         config/terminator/config \
-         dircolors \
-         fonts \
-         emacs \
-         gitconfig \
-         inputrc \
-         ssh \
-         vim \
-         vimrc
+    config/flake8 \
+    config/pylintrc \
+    config/pep8 \
+    config/terminator/config \
+    dircolors \
+    fonts \
+    emacs \
+    gitconfig \
+    inputrc \
+    ssh \
+    vim \
+    vimrc
 do
     rm -rf ~/.$i
     ln -sf $stuff/rc/$i ~/.$i
@@ -179,10 +179,12 @@ git pull
 git clean -xdf
 make clean
 cd src
-./configure --with-features=huge \
-            --with-x \
-            --enable-python3interp=yes \
-            --enable-gui=no
+./configure \
+    --with-features=huge \
+    --with-x \
+    --enable-python3interp=yes \
+    --enable-gui=no
+
 make
 sudo make install
 
