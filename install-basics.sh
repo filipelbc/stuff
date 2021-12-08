@@ -214,6 +214,19 @@ make autoloads
 make
 sudo make install
 
+# pgFormatter
+cd $other
+if [ ! -d pgFormatter ]
+then
+    git clone https://github.com/darold/pgFormatter
+fi
+cd pgFormatter
+git pull
+git clean -xdf
+perl Makefile.PL
+make
+sudo make install
+
 cd $other
 sudo wget -q -O /usr/share/emacs/site-lisp/htmlize.el 'https://raw.githubusercontent.com/hniksic/emacs-htmlize/master/htmlize.el'
 sudo wget -q -O /usr/share/emacs/site-lisp/ox-gfm.el 'https://raw.githubusercontent.com/larstvei/ox-gfm/master/ox-gfm.el'
