@@ -6,6 +6,7 @@ sudo apt -y purge \
     light-locker
 
 # Add basic stuff
+sudo apt -y update
 sudo apt -y install \
     apt-transport-https \
     bash-completion \
