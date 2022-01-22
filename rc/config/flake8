@@ -1,3 +1,4 @@
-[flake8]
-    ignore=E501, E221, E241
+# https://www.flake8rules.com/
 
+[flake8]
+    ignore=E501, E221, E241, E741, E742, E743
