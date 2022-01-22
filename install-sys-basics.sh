@@ -71,6 +71,7 @@ sudo apt-get -y upgrade
 sudo apt-get -y install \
     autotools-dev \
     build-essential \
+    cmake \
     code \
     curl \
     docker-ce \
