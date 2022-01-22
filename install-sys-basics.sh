@@ -32,10 +32,6 @@ sudo apt-add-repository -y "deb http://apt.postgresql.org/pub/repos/apt/ ${relea
 wget -q -O - "https://www.pgadmin.org/static/packages_pgadmin_org.pub" | sudo apt-key add -
 sudo apt-add-repository -y "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/${release} pgadmin4 main"
 
-# Java
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 73C3DB2A
-sudo apt-add-repository -y "deb http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main"
-
 # Docker
 wget -q -O - "https://download.docker.com/linux/ubuntu/gpg" | sudo apt-key add -
 sudo apt-add-repository -y "deb [arch=amd64] https://download.docker.com/linux/debian ${release} stable"
@@ -91,7 +87,6 @@ sudo apt-get -y install \
     libtool \
     nodejs \
     obs-studio \
-    oracle-java16-installer \
     peek \
     pwgen \
     python3-dev \
