@@ -85,7 +85,7 @@ sudo dpkg -i bat.deb
 rm bat.deb
 
 # Delta
-wget -q -O delta.deb 'https://github.com/dandavison/delta/releases/download/0.10.1/git-delta-musl_0.10.1_amd64.deb'
+wget -q -O delta.deb 'https://github.com/dandavison/delta/releases/download/0.11.3/git-delta-musl_0.11.3_amd64.deb'
 sudo dpkg -i delta.deb
 rm delta.deb
 
