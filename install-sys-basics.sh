@@ -2,6 +2,9 @@
 
 set -ex
 
+sudo apt -y purge \
+    light-locker
+
 # Add basic stuff
 sudo apt -y install \
     apt-transport-https \
