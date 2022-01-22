@@ -75,7 +75,6 @@ sudo apt-get -y install \
     code \
     curl \
     docker-ce \
-    dotnet-sdk-5.0 \
     emacs-nox \
     feh \
     google-chrome-stable \
