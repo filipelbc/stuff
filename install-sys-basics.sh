@@ -24,6 +24,7 @@ xfconf-query -c xsettings -p /Net/IconThemeName -s "elementary-xfce-dark"
 xfconf-query -c xfwm4 -p /general/theme -s "Greybird"
 
 release=$(lsb_release -cs)
+arch=$(dpkg --print-architecture)
 
 # PostgreSQL
 wget -q -O - "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | sudo apt-key add -
@@ -34,35 +35,21 @@ wget -q -O - "https://www.pgadmin.org/static/packages_pgadmin_org.pub" | sudo ap
 sudo apt-add-repository -y "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/${release} pgadmin4 main"
 
 # Docker
-wget -q -O - "https://download.docker.com/linux/ubuntu/gpg" | sudo apt-key add -
-sudo apt-add-repository -y "deb [arch=amd64] https://download.docker.com/linux/debian ${release} stable"
+key=/usr/share/keyrings/docker-archive-keyring.gpg
+wget -q -O - "https://download.docker.com/linux/debian/gpg" | sudo gpg --dearmor -o ${key}
+sudo apt-add-repository -y "deb [arch=${arch} signed-by=${key}] https://download.docker.com/linux/debian ${release} stable"
 
 # Google Chrome
 wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
-sudo apt-add-repository -y "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+sudo apt-add-repository -y "deb [arch=${arch}] http://dl.google.com/linux/chrome/deb/ stable main"
 
 # VS Code
-wget -q -O - "https://packages.microsoft.com/keys/microsoft.asc" | sudo apt-key add -
-sudo apt-add-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-
-# .NET
-wget -q "https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
-
-# Yarn
-wget -q -O - "https://dl.yarnpkg.com/debian/pubkey.gpg" | sudo apt-key add -
-sudo apt-add-repository -y "deb https://dl.yarnpkg.com/debian/ stable main"
-
-# Kubernetes
-wget -q -O - "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | sudo apt-key add -
-sudo apt-add-repository -y "deb http://apt.kubernetes.io/ kubernetes-xenial main"
-
-# Google Cloud SDK
-sudo apt-add-repository -y "deb https://packages.cloud.google.com/apt cloud-sdk main"
+key=/usr/share/keyrings/docker-archive-keyring.gpg
+wget -q -O - "https://packages.microsoft.com/keys/microsoft.asc" | sudo gpg --dearmor -o ${key}
+sudo apt-add-repository -y "deb [arch=${arch} signed-by=${key}] https://packages.microsoft.com/repos/code stable main"
 
 # NodeJS
-wget -q -O - "https://deb.nodesource.com/setup_14.x" | sudo bash -
+wget -q -O - "https://deb.nodesource.com/setup_16.x" | sudo bash -
 
 # Update & Upgrade
 sudo apt-get -y update
@@ -107,10 +94,10 @@ sudo apt-get -y build-dep vim
 sudo apt-get -y autoremove
 
 # Remove redundant entries
-sudo sed -i -e '/google/d' -e '/vscode/d' /etc/apt/sources.list
+sudo sed -i -e '/google/d' -e '/microsoft/d' /etc/apt/sources.list
 
 # Remove splash screen
-sudo sed -i -e 's/"quiet"/""/' /etc/default/grub
+sudo sed -i -e 's/quiet splash//' /etc/default/grub
 sudo update-grub
 
 # Add user to docker group
