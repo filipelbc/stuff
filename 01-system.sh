@@ -2,26 +2,14 @@
 
 set -ex
 
-sudo apt -y purge \
-    light-locker
-
-# Add basic stuff
-sudo apt -y update
 sudo apt -y install \
     apt-transport-https \
     bash-completion \
     ca-certificates \
-    elementary-xfce-icon-theme \
     git \
     gnupg \
-    greybird-gtk-theme \
     software-properties-common \
     wget
-
-# Set desktop theme
-xfconf-query -c xsettings -p /Net/ThemeName -s "Greybird"
-xfconf-query -c xsettings -p /Net/IconThemeName -s "elementary-xfce-dark"
-xfconf-query -c xfwm4 -p /general/theme -s "Greybird"
 
 release=$(lsb_release -cs)
 arch=$(dpkg --print-architecture)
@@ -52,8 +40,7 @@ sudo apt-add-repository -y "deb [arch=${arch} signed-by=${key}] https://packages
 wget -q -O - "https://deb.nodesource.com/setup_16.x" | sudo bash -
 
 # Update & Upgrade
-sudo apt-get -y update
-sudo apt-get -y upgrade
+sudo apt -y upgrade
 
 # Install useful stuff
 sudo apt-get -y install \
@@ -89,10 +76,6 @@ sudo apt-get -y install \
     xclip \
     xscreensaver
 
-sudo apt-get -y build-dep vim
-
-sudo apt-get -y autoremove
-
 # Remove redundant entries
 sudo sed -i -e '/google/d' -e '/microsoft/d' /etc/apt/sources.list
 
@@ -100,38 +83,9 @@ sudo sed -i -e '/google/d' -e '/microsoft/d' /etc/apt/sources.list
 sudo sed -i -e 's/quiet splash//' /etc/default/grub
 sudo update-grub
 
-# Add user to docker group
-sudo gpasswd -a "$USER" docker
-
 # Docker-compose
 sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)"
 sudo chmod +x /usr/local/bin/docker-compose
 
-# Create symlinks
-stuff="$PWD"
-
-mkdir -p ~/.config/terminator
-
-for i in bashrc \
-    config/flake8 \
-    config/pylintrc \
-    config/pep8 \
-    config/terminator/config \
-    dircolors \
-    fonts \
-    emacs \
-    gitconfig \
-    inputrc \
-    ssh \
-    vim \
-    vimrc
-do
-    rm -rf ~/.$i
-    ln -sf $stuff/rc/$i ~/.$i
-done
-
-rm -rf ~/bin
-ln -sf $stuff/bin ~
-
-rm -rf ~/Downloads
-ln -sf /files/downloads ~/Downloads
+# Add user to docker group
+sudo gpasswd -a "$USER" docker

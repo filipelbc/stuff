@@ -2,55 +2,11 @@
 
 set -ex
 
-# Python development helpers
-pip3 install --upgrade --user \
-    autopep8 \
-    flake8 \
-    pep8-naming \
-    pylint \
-    requests \
-    tabulate
-
-# External stuff
 other="$PWD/../../other"
-
-mkdir -p $other
-
-# Vim
-cd $other
-if [ ! -d vim ]
-then
-    git clone https://github.com/vim/vim.git
-fi
-cd vim
-git pull
-git clean -xdf
-make clean
-cd src
-./configure \
-    --with-features=huge \
-    --with-x \
-    --enable-python3interp=yes \
-    --enable-gui=no
-
-make
-sudo make install
-
-mkdir -p /var/tmp/filipe/vim/{swap,backups}
-
-if [ ! -d ~/.vim/bundle/Vundle.vim ]
-then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-fi
-
-vim +PluginInstall +PluginUpdate +qall
-
-# YouCompleteMe (Vim plugin)
-cd ~/.vim/bundle/YouCompleteMe
-python3 ./install.py --ts-completer --rust-completer
+mkdir -p "$other"
 
 # Orgmode
-cd $other
+cd "$other"
 if [ ! -d org-mode ]
 then
     git clone https://git.savannah.gnu.org/git/emacs/org-mode.git
@@ -63,7 +19,7 @@ make
 sudo make install
 
 # pgFormatter
-cd $other
+cd "$other"
 if [ ! -d pgFormatter ]
 then
     git clone https://github.com/darold/pgFormatter
@@ -75,7 +31,6 @@ perl Makefile.PL
 make
 sudo make install
 
-cd $other
 sudo wget -q -O /usr/share/emacs/site-lisp/htmlize.el 'https://raw.githubusercontent.com/hniksic/emacs-htmlize/master/htmlize.el'
 sudo wget -q -O /usr/share/emacs/site-lisp/ox-gfm.el 'https://raw.githubusercontent.com/larstvei/ox-gfm/master/ox-gfm.el'
 
