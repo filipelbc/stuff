@@ -8,33 +8,45 @@ sudo apt -y install \
     ca-certificates \
     git \
     gnupg \
-    software-properties-common \
     wget
 
 release=$(lsb_release -cs)
 arch=$(dpkg --print-architecture)
 
+echo '# Added' | sudo tee -a /etc/apt/sources.list
+
+add-repository() {
+    echo "$1" | sudo tee -a /etc/apt/sources.list
+}
+
+install-key() {
+    wget -q -O - "$1" | gpg --dearmor | sudo tee "$2" > /dev/null
+}
+
 # PostgreSQL
-wget -q -O - "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | sudo apt-key add -
-sudo apt-add-repository -y "deb http://apt.postgresql.org/pub/repos/apt/ ${release}-pgdg main"
+key=/usr/share/keyrings/postgres-archive-keyring.gpg
+install-key "https://www.postgresql.org/media/keys/ACCC4CF8.asc" ${key}
+add-repository "deb [signed-by=${key}] http://apt.postgresql.org/pub/repos/apt/ ${release}-pgdg main"
 
 # pgAdmin4
-wget -q -O - "https://www.pgadmin.org/static/packages_pgadmin_org.pub" | sudo apt-key add -
-sudo apt-add-repository -y "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/${release} pgadmin4 main"
+key=/usr/share/keyrings/pgadmin4-archive-keyring.gpg
+install-key "https://www.pgadmin.org/static/packages_pgadmin_org.pub" ${key}
+add-repository "deb [signed-by=${key}] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/${release} pgadmin4 main"
 
 # Docker
 key=/usr/share/keyrings/docker-archive-keyring.gpg
-wget -q -O - "https://download.docker.com/linux/debian/gpg" | sudo gpg --dearmor -o ${key}
-sudo apt-add-repository -y "deb [arch=${arch} signed-by=${key}] https://download.docker.com/linux/debian ${release} stable"
+install-key "https://download.docker.com/linux/debian/gpg" ${key}
+add-repository "deb [arch=${arch} signed-by=${key}] https://download.docker.com/linux/debian ${release} stable"
 
 # Google Chrome
-wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
-sudo apt-add-repository -y "deb [arch=${arch}] http://dl.google.com/linux/chrome/deb/ stable main"
+key=/usr/share/keyrings/google-archive-keyring.gpg
+install-key "https://dl-ssl.google.com/linux/linux_signing_key.pub" ${key}
+add-repository "deb [arch=${arch} signed-by=${key}] http://dl.google.com/linux/chrome/deb/ stable main"
 
 # VS Code
-key=/usr/share/keyrings/docker-archive-keyring.gpg
-wget -q -O - "https://packages.microsoft.com/keys/microsoft.asc" | sudo gpg --dearmor -o ${key}
-sudo apt-add-repository -y "deb [arch=${arch} signed-by=${key}] https://packages.microsoft.com/repos/code stable main"
+key=/usr/share/keyrings/microsoft-archive-keyring.gpg
+install-key "https://packages.microsoft.com/keys/microsoft.asc" ${key}
+add-repository "deb [arch=${arch} signed-by=${key}] https://packages.microsoft.com/repos/code stable main"
 
 # NodeJS
 wget -q -O - "https://deb.nodesource.com/setup_16.x" | sudo bash -
