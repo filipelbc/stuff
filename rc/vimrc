@@ -55,12 +55,12 @@ set autoread
 set autowrite
 set backspace=indent,eol,start
 set backup
-set backupdir=/var/tmp/filipe/vim/backups/
+set backupdir=/var/tmp/$USER/vim/backups/
 set breakindent
 set colorcolumn=80
 set cursorline
 set diffopt=filler,vertical
-set directory=/var/tmp/filipe/vim/swap/
+set directory=/var/tmp/$USER/vim/swap/
 set encoding=utf-8
 set expandtab
 set fileencoding=utf-8
