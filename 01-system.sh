@@ -8,6 +8,7 @@ sudo apt -y install \
     ca-certificates \
     git \
     gnupg \
+    lsb-release \
     wget
 
 release=$(lsb_release -cs)
