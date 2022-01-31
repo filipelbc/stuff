@@ -28,5 +28,6 @@ done
 rm -rf ~/bin
 ln -sf "$stuff/bin" ~
 
-rm -rf ~/{Downloads,Documents,Music,Pictures,Public,Templates,Videos}
-ln -sf /files/downloads ~/Downloads
+rm -rf ~/{Documents,Music,Pictures,Public,Templates,Videos}
+
+mkdir -p "/var/tmp/$USER/vim/"{swap,backups}
