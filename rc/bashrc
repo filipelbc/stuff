@@ -254,6 +254,6 @@ fi
 #===============================================================================
 # Listing:
 
-. /files/git/filipelbc/stuff/sh/list.sh
+. /files/git/$USER/stuff/sh/list.sh
 
 list
