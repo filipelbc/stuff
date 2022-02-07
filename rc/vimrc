@@ -149,12 +149,6 @@ let g:org_custom_todo_styles = {
             \   'TODO':     ['#bb1100', 'NONE',    'inverse,bold'],
             \ }
 
-" TaskJuggler
-autocmd FileType tjp setlocal commentstring=#\ %s
-autocmd FileType tjp setlocal foldtext=getline(v:foldstart).\'...\'
-autocmd FileType tjp setlocal foldmethod=indent
-autocmd FileType tjp setlocal foldminlines=2
-
 " NerdCommenter
 let g:NERDDefaultAlign = 'left'
 
@@ -165,8 +159,8 @@ let g:formatters_org = ['orgformat_org']
 let g:formatdef_jsbeautify_json = '"js-beautify -n -m 1 --editorconfig -"'
 let g:formatters_json = ['jsbeautify_json']
 
-let g:formatdef_jsbeautify_javascript = '"js-beautify -n -m 2 --editorconfig -"'
-let g:formatters_javascript = ['jsbeautify_javascript']
+let g:formatdef_prettier_javascript = '"npx prettier --stdin-filepath foo.js"'
+let g:formatters_javascript = ['prettier_javascript']
 
 let g:formatdef_elmformat_elm = '"elm-format --stdin"'
 let g:formatters_elm = ['elmformat_elm']
@@ -208,11 +202,6 @@ nnoremap <leader><leader>c      :noautocmd call CloseQLS()<CR>
 nnoremap <leader><space>        :noh<CR>
 
 nnoremap <C-t> :NERDTree<CR>
-
-" workaround a bug where scape sequences are rendered when the side bar is
-" updated
-set t_TE=
-set t_TI=
 
 " less visible 'listchars'
 hi SpecialKey guifg=#a9bdc4 cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guibg=NONE
