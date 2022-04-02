@@ -162,6 +162,12 @@ let g:formatters_json = ['jsbeautify_json']
 let g:formatdef_prettier_javascript = '"npx prettier --stdin-filepath foo.js"'
 let g:formatters_javascript = ['prettier_javascript']
 
+let g:formatdef_prettier_typescript = '"npx prettier --stdin-filepath foo.ts"'
+let g:formatters_typescript = ['prettier_typescript']
+
+let g:formatdef_prettier_typescriptreact = '"npx prettier --stdin-filepath foo.tsx"'
+let g:formatters_typescriptreact = ['prettier_typescriptreact']
+
 let g:formatdef_elmformat_elm = '"elm-format --stdin"'
 let g:formatters_elm = ['elmformat_elm']
 
