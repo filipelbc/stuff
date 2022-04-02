@@ -18,6 +18,9 @@ make autoloads
 make
 sudo make install
 
+sudo wget -q -O /usr/share/emacs/site-lisp/htmlize.el 'https://raw.githubusercontent.com/hniksic/emacs-htmlize/master/htmlize.el'
+sudo wget -q -O /usr/share/emacs/site-lisp/ox-gfm.el 'https://raw.githubusercontent.com/larstvei/ox-gfm/master/ox-gfm.el'
+
 # pgFormatter
 cd "$other"
 if [ ! -d pgFormatter ]
@@ -31,16 +34,13 @@ perl Makefile.PL
 make
 sudo make install
 
-sudo wget -q -O /usr/share/emacs/site-lisp/htmlize.el 'https://raw.githubusercontent.com/hniksic/emacs-htmlize/master/htmlize.el'
-sudo wget -q -O /usr/share/emacs/site-lisp/ox-gfm.el 'https://raw.githubusercontent.com/larstvei/ox-gfm/master/ox-gfm.el'
-
 # Bat
-wget -q -O bat.deb 'https://github.com/sharkdp/bat/releases/download/v0.18.3/bat-musl_0.18.3_amd64.deb'
+wget -q -O bat.deb 'https://github.com/sharkdp/bat/releases/download/v0.20.0/bat-musl_0.20.0_amd64.deb'
 sudo dpkg -i bat.deb
 rm bat.deb
 
 # Delta
-wget -q -O delta.deb 'https://github.com/dandavison/delta/releases/download/0.11.3/git-delta-musl_0.11.3_amd64.deb'
+wget -q -O delta.deb 'https://github.com/dandavison/delta/releases/download/0.12.1/git-delta-musl_0.12.1_amd64.deb'
 sudo dpkg -i delta.deb
 rm delta.deb
 
