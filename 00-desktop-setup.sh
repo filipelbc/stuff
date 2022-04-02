@@ -3,7 +3,8 @@
 set -ex
 
 sudo apt -y purge \
-    light-locker
+    light-locker \
+    firefox-esr-l10n*
 
 sudo apt -y install \
     elementary-xfce-icon-theme \
