@@ -40,6 +40,8 @@ Plugin 'lifepillar/pgsql.vim'
 " javascript
 Plugin 'evanleck/vim-svelte'
 Plugin 'pangloss/vim-javascript'
+" latex
+Plugin 'lervag/vimtex'
 call vundle#end()
 
 " Workaround weird slowness in insert mode
