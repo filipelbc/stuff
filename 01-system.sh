@@ -24,6 +24,11 @@ install-key() {
     wget -q -O - "$1" | gpg --dearmor | sudo tee "$2" > /dev/null
 }
 
+# Signal
+key=/usr/share/keyrings/signal-desktop-keyring.gpg
+install-key "https://updates.signal.org/desktop/apt/keys.asc" ${key}
+add-repository "deb [arch=${arch} signed-by=${key}] https://updates.signal.org/desktop/apt xenial main"
+
 # PostgreSQL
 key=/usr/share/keyrings/postgres-archive-keyring.gpg
 install-key "https://www.postgresql.org/media/keys/ACCC4CF8.asc" ${key}
