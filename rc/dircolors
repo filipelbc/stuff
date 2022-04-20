@@ -84,8 +84,8 @@ CHR 93;47                       # character device driver
 SETUID 93;47                    # file that is setuid (u+s)
 SETGID 93;47                    # file that is setgid (g+s)
 CAPABILITY 93;47                # file with capability
-STICKY_OTHER_WRITABLE 93;47     # dir that is sticky and other-writable (+t,o+w)
-OTHER_WRITABLE 93;47            # dir that is other-writable (o+w) and not sticky
+STICKY_OTHER_WRITABLE 1;38      # dir that is sticky and other-writable (+t,o+w)
+OTHER_WRITABLE 1;38             # dir that is other-writable (o+w) and not sticky
 STICKY 93;47                    # dir that is sticky bit set (+t) and not other-writable
 
 # windows executables
