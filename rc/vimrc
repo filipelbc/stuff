@@ -173,6 +173,8 @@ let g:formatters_typescriptreact = ['prettier_typescriptreact']
 let g:formatdef_elmformat_elm = '"elm-format --stdin"'
 let g:formatters_elm = ['elmformat_elm']
 
+let g:formatters_python = ['black', 'autopep8']
+
 " PostgreSQL
 let g:sql_type_default = 'pgsql'
 
