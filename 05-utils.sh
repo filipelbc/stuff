@@ -35,12 +35,12 @@ make
 sudo make install
 
 # Bat
-wget -q -O bat.deb 'https://github.com/sharkdp/bat/releases/download/v0.20.0/bat-musl_0.20.0_amd64.deb'
+wget -q -O bat.deb 'https://github.com/sharkdp/bat/releases/download/v0.21.0/bat-musl_0.21.0_amd64.deb'
 sudo dpkg -i bat.deb
 rm bat.deb
 
 # Delta
-wget -q -O delta.deb 'https://github.com/dandavison/delta/releases/download/0.12.1/git-delta-musl_0.12.1_amd64.deb'
+wget -q -O delta.deb 'https://github.com/dandavison/delta/releases/download/0.13.0/git-delta-musl_0.13.0_amd64.deb'
 sudo dpkg -i delta.deb
 rm delta.deb
 
