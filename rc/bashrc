@@ -252,6 +252,12 @@ then
 fi
 
 #===============================================================================
+# AWS profile
+
+export AWS_PROFILE=none
+export SAM_CLI_TELEMETRY=0
+
+#===============================================================================
 # Listing:
 
 . /files/git/$USER/stuff/sh/list.sh
