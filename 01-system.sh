@@ -106,4 +106,4 @@ sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Add user to docker group
-sudo gpasswd -a "$USER" docker
+sudo usermod -aG docker "$USER"
