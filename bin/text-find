@@ -16,5 +16,7 @@ grep \
     --exclude-dir=bin \
     --exclude-dir=obj \
     --exclude-dir=__pycache__ \
+    --exclude-dir=.aws-sam \
+    --exclude=package-lock.json \
     "$pattern" \
     "$@"
