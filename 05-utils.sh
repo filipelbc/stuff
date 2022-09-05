@@ -40,7 +40,7 @@ sudo dpkg -i bat.deb
 rm bat.deb
 
 # Delta
-wget -q -O delta.deb 'https://github.com/dandavison/delta/releases/download/0.13.0/git-delta-musl_0.13.0_amd64.deb'
+wget -q -O delta.deb 'https://github.com/dandavison/delta/releases/download/0.14.0/git-delta-musl_0.14.0_amd64.deb'
 sudo dpkg -i delta.deb
 rm delta.deb
 
