@@ -156,20 +156,7 @@ alias bat="bat --theme 'Solarized (light)'"
 
 alias :q='exit'
 
-alias :up='sudo apt update; sudo apt dist-upgrade; sudo apt autoremove'
-
 alias :ip='ifconfig | grep inet'
-
-alias :topdf='sudo libreoffice --headless --invisible --convert-to pdf --outdir .'
-
-alias :texrm='rm -f *.aux *.log *.out *.blg *.bbl *.bcf *.brf *.run.xml *.snm *.nav \
-                    *.toc *.lof *.lot *.lsb *.las *.los *.loa *.ent *~'
-
-alias :tex='pdflatex -file-line-error -shell-escape -halt-on-error -interaction=nonstopmode'
-alias :luatex='lualatex -file-line-error -shell-escape -halt-on-error -interaction=nonstopmode'
-
-alias :cg='valgrind --tool=callgrind --cache-sim=yes --branch-sim=yes'
-alias :vg='valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes'
 
 man() {
     LESS_TERMCAP_md=$'\e[1;32m' \
@@ -213,10 +200,18 @@ if command -v pyenv 1>/dev/null 2>&1
 then
     eval "$(pyenv init -)"
 
-    if $(pyenv commands | grep -q 'virtualenv')
+    if pyenv commands | grep -q 'virtualenv'
     then
         eval "$(pyenv virtualenv-init -)"
     fi
+fi
+
+#===============================================================================
+# Rbenv
+
+if [ -d "$HOME/.rbenv" ]
+then
+    eval "$(~/.rbenv/bin/rbenv init - bash)"
 fi
 
 #===============================================================================
@@ -238,9 +233,9 @@ fi
 #===============================================================================
 # Git Subrepo
 
-if [ -f /files/git/other/git-subrepo/.rc ]
+if [ -f '/files/git/other/git-subrepo/.rc' ]
 then
-    . /files/git/other/git-subrepo/.rc
+    . '/files/git/other/git-subrepo/.rc'
 fi
 
 #===============================================================================
@@ -260,6 +255,15 @@ then
 fi
 
 #===============================================================================
+# nvm
+
+if [ -d "$HOME/.nvm/nvm.sh" ]
+then
+    . "$HOME/.nvm/nvm.sh"
+    . "$HOME/.nvm/bash_completion"
+fi
+
+#===============================================================================
 # AWS profile
 
 export AWS_PROFILE=none
@@ -268,6 +272,6 @@ export SAM_CLI_TELEMETRY=0
 #===============================================================================
 # Listing:
 
-. /files/git/$USER/stuff/sh/list.sh
+. "/files/git/$USER/stuff/sh/list.sh"
 
 list
