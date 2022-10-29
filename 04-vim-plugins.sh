@@ -10,4 +10,4 @@ fi
 vim +PluginInstall +PluginUpdate +qall
 
 cd ~/.vim/bundle/YouCompleteMe
-python3 ./install.py --ts-completer --rust-completer
+python3 ./install.py --ts-completer --rust-completer --go-completer

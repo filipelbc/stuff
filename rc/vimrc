@@ -42,6 +42,8 @@ Plugin 'evanleck/vim-svelte'
 Plugin 'pangloss/vim-javascript'
 " latex
 Plugin 'lervag/vimtex'
+" go
+Plugin 'fatih/vim-go'
 call vundle#end()
 
 " Workaround weird slowness in insert mode
@@ -177,6 +179,9 @@ let g:formatters_python = ['black', 'autopep8']
 
 " PostgreSQL
 let g:sql_type_default = 'pgsql'
+
+" Go
+let g:go_fmt_command = 'gofmt'
 
 "===============================================================================
 " Maps:
