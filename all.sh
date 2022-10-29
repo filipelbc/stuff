@@ -9,5 +9,5 @@ sudo apt update -y
 ./02-home.sh
 ./03-python.sh
 ./04-vim-install.sh
-./04-vim-plugins.sh
-./05-utils.sh
+./05-vim-plugins.sh
+./06-utils.sh
