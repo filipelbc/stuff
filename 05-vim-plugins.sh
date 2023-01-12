@@ -2,12 +2,14 @@
 
 set -ex
 
-if [ ! -d ~/.vim/bundle/Vundle.vim ]
-then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-fi
+curl https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
+    --output ~/.vim/autoload/plug.vim \
+    --location \
+    --create-dirs \
+    --fail
 
-vim +PluginInstall +PluginUpdate +qall
+sudo npm install --global typescript eslint
 
-cd ~/.vim/bundle/YouCompleteMe
-python3 ./install.py --ts-completer --rust-completer --go-completer
+pip3 install --upgrade --user msgpack pynvim
+
+vim +PlugInstall +PlugUpdate +qa
