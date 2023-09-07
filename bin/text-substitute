@@ -8,6 +8,7 @@ function g() {
         --binary-files=without-match \
         --color=auto \
         --exclude-dir=.git \
+        --exclude-dir=build \
         --exclude-dir=node_modules \
         --exclude-dir=bin \
         --exclude-dir=obj \

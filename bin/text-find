@@ -12,6 +12,7 @@ grep \
     --line-number \
     --color=auto \
     --exclude-dir=.git \
+    --exclude-dir=build \
     --exclude-dir=node_modules \
     --exclude-dir=bin \
     --exclude-dir=obj \
