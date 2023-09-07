@@ -54,6 +54,11 @@ key=/usr/share/keyrings/microsoft-archive-keyring.gpg
 install-key "https://packages.microsoft.com/keys/microsoft.asc" ${key}
 add-repository "deb [arch=${arch} signed-by=${key}] https://packages.microsoft.com/repos/code stable main"
 
+# Java
+key=/usr/share/keyrings/java-adoptium-temurin-keyring.gpg
+install-key "https://packages.adoptium.net/artifactory/api/gpg/key/public" ${key}
+add-repository "deb [signed-by=${key}] https://packages.adoptium.net/artifactory/deb ${release} main"
+
 # NodeJS
 wget -q -O - "https://deb.nodesource.com/setup_16.x" | sudo bash -
 
@@ -87,6 +92,7 @@ sudo apt-get -y install \
     python3-virtualenv \
     rename \
     shellcheck \
+    temurin-19-jdk \
     terminator \
     texinfo \
     tree \

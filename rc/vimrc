@@ -137,6 +137,16 @@ call deoplete#custom#option('sources', { '_': ['ale', 'file', 'buffer', 'member'
 call deoplete#custom#source('file', 'enable_slash_completion', v:true)
 call deoplete#custom#source('ale',  'max_menu_width', 0)
 
+" Java
+let $JAVA_TOOL_OPTIONS = "-javaagent:/files/git/amberflo/other/lombok.jar"
+
+let g:ale_java_eclipselsp_executable = '/usr/lib/jvm/temurin-19-jdk-amd64/bin/java'
+let g:ale_java_eclipselsp_path = '/files/git/amberflo/other/eclipse.jdt.ls'
+let g:ale_java_eclipselsp_workspace_path = '/tmp/jdtls/' . split(getcwd(), '/')[-1]
+
+let g:java_highlight_functions = 1
+let g:java_highlight_java = 1
+
 " Orgmode
 let g:org_start_with_closed_sections = 'endstate,comment'
 
