@@ -1,2 +1,2 @@
 #!/bin/bash
-PYTHONPATH='/home/'$USER'/.local/lib/python3.9/site-packages' python3 -m pylint $@
+/usr/bin/python3 -m pylint $@

@@ -24,20 +24,10 @@ install-key() {
     wget -q -O - "$1" | gpg --dearmor | sudo tee "$2" > /dev/null
 }
 
-# Signal
-key=/usr/share/keyrings/signal-desktop-keyring.gpg
-install-key "https://updates.signal.org/desktop/apt/keys.asc" ${key}
-add-repository "deb [arch=${arch} signed-by=${key}] https://updates.signal.org/desktop/apt xenial main"
-
 # PostgreSQL
 key=/usr/share/keyrings/postgres-archive-keyring.gpg
 install-key "https://www.postgresql.org/media/keys/ACCC4CF8.asc" ${key}
 add-repository "deb [signed-by=${key}] http://apt.postgresql.org/pub/repos/apt/ ${release}-pgdg main"
-
-# pgAdmin4
-key=/usr/share/keyrings/pgadmin4-archive-keyring.gpg
-install-key "https://www.pgadmin.org/static/packages_pgadmin_org.pub" ${key}
-add-repository "deb [signed-by=${key}] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/${release} pgadmin4 main"
 
 # Docker
 key=/usr/share/keyrings/docker-archive-keyring.gpg
@@ -49,18 +39,13 @@ key=/usr/share/keyrings/google-archive-keyring.gpg
 install-key "https://dl-ssl.google.com/linux/linux_signing_key.pub" ${key}
 add-repository "deb [arch=${arch} signed-by=${key}] http://dl.google.com/linux/chrome/deb/ stable main"
 
-# VS Code
-key=/usr/share/keyrings/microsoft-archive-keyring.gpg
-install-key "https://packages.microsoft.com/keys/microsoft.asc" ${key}
-add-repository "deb [arch=${arch} signed-by=${key}] https://packages.microsoft.com/repos/code stable main"
-
 # Java
 key=/usr/share/keyrings/java-adoptium-temurin-keyring.gpg
 install-key "https://packages.adoptium.net/artifactory/api/gpg/key/public" ${key}
 add-repository "deb [signed-by=${key}] https://packages.adoptium.net/artifactory/deb ${release} main"
 
 # NodeJS
-wget -q -O - "https://deb.nodesource.com/setup_16.x" | sudo bash -
+wget -q -O - "https://deb.nodesource.com/setup_20.x" | sudo bash -
 
 # Update & Upgrade
 sudo apt -y upgrade
@@ -70,7 +55,6 @@ sudo apt-get -y install \
     autotools-dev \
     build-essential \
     cmake \
-    code \
     curl \
     docker-ce \
     emacs-nox \
@@ -81,18 +65,12 @@ sudo apt-get -y install \
     htop \
     intltool \
     jq \
-    libreoffice \
     libtool \
-    nodejs \
-    obs-studio \
     peek \
     pwgen \
-    python3-dev \
-    python3-pip \
-    python3-virtualenv \
     rename \
     shellcheck \
-    temurin-19-jdk \
+    temurin-21-jdk \
     terminator \
     texinfo \
     tree \
@@ -106,10 +84,6 @@ sudo sed -i -e '/google/d' -e '/microsoft/d' /etc/apt/sources.list
 # Remove splash screen
 sudo sed -i -e 's/quiet splash//' /etc/default/grub
 sudo update-grub
-
-# Docker-compose
-sudo wget -q -O /usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)"
-sudo chmod +x /usr/local/bin/docker-compose
 
 # Add user to docker group
 sudo usermod -aG docker "$USER"

@@ -4,7 +4,9 @@ set -ex
 
 sudo apt -y purge \
     light-locker \
-    firefox-esr-l10n*
+    firefox-esr-l10n* \
+    libreoffice-l10n* \
+    libreoffice-help*
 
 sudo apt -y install \
     elementary-xfce-icon-theme \
