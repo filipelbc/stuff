@@ -139,6 +139,11 @@ call deoplete#custom#option('sources', { '_': ['ale', 'file', 'buffer', 'member'
 call deoplete#custom#source('file', 'enable_slash_completion', v:true)
 call deoplete#custom#source('ale',  'max_menu_width', 0)
 
+" Disable ALE for .kts files
+let g:ale_pattern_options = {
+    \    '.*\.kts$': { 'ale_enabled': 0 },
+    \}
+
 " Java
 let $JAVA_TOOL_OPTIONS = "-javaagent:/files/git/amberflo/other/lombok.jar"
 
