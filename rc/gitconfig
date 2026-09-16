@@ -2,18 +2,22 @@
     email = filipelbc@gmail.com
     name = Filipe Correia
 
+[init]
+    defaultBranch = main
+
 [core]
     editor = vim
     whitespace = fix,-indent-with-non-tab,trailing-space
     excludesfile = ~/.gitignore_global
     pager = delta --syntax-theme 'Solarized (light)' --side-by-side --hunk-header-decoration-style ''
 
-[interactive]
-    diffFilter = delta --color-only
-
 [diff]
     tool = vimdiff
-    algorithm = patience
+    algorithm = histogram
+    colorMoved = plain
+    colorMovedWS = allow-indentation-change
+    mnemonicPrefix = true
+    renames = true
 
 [difftool]
     prompt = false
@@ -50,6 +54,17 @@
     oldHighlight = red 223
     newNormal = green
     newHighlight = green 193
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[tag]
+    sort = version:refname
+
+[branch]
+    sort = -committerdate
 
 [push]
     default = simple
