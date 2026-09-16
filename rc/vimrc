@@ -22,6 +22,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'preservim/nerdtree'
+Plug 'vim-test/vim-test'
 " polyglot
 Plug 'sheerun/vim-polyglot'
 " markdown preview
@@ -106,6 +107,10 @@ autocmd BufWinEnter * normal zR
 "===============================================================================
 " Options:
 
+" Vim-Test
+let g:test#strategy = 'vimterminal'
+let g:test#vim#term_position = "vert"
+
 " Vim-Ale
 let g:airline#extensions#ale#enabled = 1
 
@@ -129,10 +134,12 @@ let g:ale_floating_preview = 1
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
 
 let g:ale_linters = {
-    \    'python': ['flake8'],
+    \    'python': ['ruff', 'pyright'],
+    \    'javascript': ['tsserver', 'eslint'],
     \}
 let g:ale_linters_ignore = {
     \    'java': ['javac'],
+    \    'typescriptreact': ['deno'],
     \}
 
 call deoplete#custom#option('sources', { '_': ['ale', 'file', 'buffer', 'member'] })
@@ -147,12 +154,14 @@ let g:ale_pattern_options = {
 " Java
 let $JAVA_TOOL_OPTIONS = "-javaagent:/files/git/amberflo/other/lombok.jar"
 
-let g:ale_java_eclipselsp_executable = '/usr/lib/jvm/temurin-19-jdk-amd64/bin/java'
+let g:ale_java_eclipselsp_executable = '/usr/lib/jvm/temurin-21-jdk-amd64/bin/java'
 let g:ale_java_eclipselsp_path = '/files/git/amberflo/other/eclipse.jdt.ls'
 let g:ale_java_eclipselsp_workspace_path = '/tmp/jdtls/' . split(getcwd(), '/')[-1]
 
 let g:java_highlight_functions = 1
 let g:java_highlight_java = 1
+
+let g:java_ignore_markdown = 1
 
 " Orgmode
 let g:org_start_with_closed_sections = 'endstate,comment'
@@ -186,7 +195,7 @@ let g:formatters_typescript = ['prettier_typescript']
 let g:formatdef_prettier_typescriptreact = '"npx prettier --stdin-filepath foo.tsx"'
 let g:formatters_typescriptreact = ['prettier_typescriptreact']
 
-let g:formatters_python = ['black', 'autopep8']
+let g:formatters_python = ['ruff']
 
 " PostgreSQL
 let g:sql_type_default = 'pgsql'
@@ -242,9 +251,13 @@ nnoremap <C-t>                  :NERDTreeFind<CR>
 hi SpecialKey guifg=#a9bdc4 cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guibg=NONE
 
 " complete with arrows, accept with tab
-
 inoremap <expr> <Tab>       pumvisible() ? "\<C-n>" : "<Tab>"
 inoremap <expr> <S-Tab>     pumvisible() ? "\<C-p>" : "<S-Tab>"
 
 inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
+
+" Vim-Test
+nnoremap <silent> <leader>t :TestNearest<CR>
+nnoremap <silent> <leader>tt :TestFile<CR>
+nnoremap <silent> <leader>ts :TestSuite<CR>
