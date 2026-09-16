@@ -281,6 +281,15 @@ then
 fi
 
 #===============================================================================
+# ruby / jekyll
+
+if [ -d "$HOME/.gems" ]
+then
+    export GEM_HOME="$HOME/.gems"
+    export PATH="$HOME/.gems/bin:$PATH"
+fi
+
+#===============================================================================
 # AWS profile
 
 export AWS_PROFILE=none
