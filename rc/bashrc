@@ -255,12 +255,29 @@ then
 fi
 
 #===============================================================================
+# pnpm
+
+if [ -d "$HOME/.local/share/pnpm" ]
+then
+    export PATH="$HOME/.local/share/pnpm:$PATH"
+fi
+
+#===============================================================================
 # nvm
 
-if [ -d "$HOME/.nvm/nvm.sh" ]
+if [ -f "$HOME/.nvm/nvm.sh" ]
 then
     . "$HOME/.nvm/nvm.sh"
     . "$HOME/.nvm/bash_completion"
+fi
+
+#===============================================================================
+# deno
+
+if [ -f "$HOME/.deno/env" ]
+then
+    . "$HOME/.deno/env"
+    . "$HOME/.local/share/bash-completion/completions/deno.bash"
 fi
 
 #===============================================================================
