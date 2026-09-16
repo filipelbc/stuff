@@ -45,7 +45,7 @@ install-key "https://packages.adoptium.net/artifactory/api/gpg/key/public" ${key
 add-repository "deb [signed-by=${key}] https://packages.adoptium.net/artifactory/deb ${release} main"
 
 # NodeJS
-wget -q -O - "https://deb.nodesource.com/setup_20.x" | sudo bash -
+wget -q -O - "https://deb.nodesource.com/setup_24.x" | sudo bash -
 
 # Update & Upgrade
 sudo apt -y upgrade
