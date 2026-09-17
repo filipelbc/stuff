@@ -9,6 +9,7 @@ sudo apt -y purge \
     libreoffice-help*
 
 sudo apt -y install \
+    xfce4-screensaver \
     elementary-xfce-icon-theme \
     greybird-gtk-theme
 

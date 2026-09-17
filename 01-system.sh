@@ -78,8 +78,7 @@ sudo apt-get -y install \
     texinfo \
     tree \
     vlc \
-    xclip \
-    xscreensaver
+    xclip
 
 # Remove redundant entries
 sudo sed -i -e '/google/d' -e '/microsoft/d' /etc/apt/sources.list
