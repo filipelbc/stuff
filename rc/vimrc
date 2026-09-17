@@ -1,16 +1,10 @@
 set nocompatible
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-
 call plug#begin()
 " fancy
 Plug 'Chiel92/vim-autoformat'
-Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'dense-analysis/ale'
 " general
 Plug 'lifepillar/vim-solarized8'
 Plug 'scrooloose/nerdcommenter'
@@ -92,6 +86,14 @@ let g:airline_theme='solarized'
 colorscheme solarized8_high
 
 "===============================================================================
+" Autocompletion:
+
+set omnifunc=ale#completion#OmniFunc
+set autocomplete
+set complete=o,.,w,b
+set completeopt=menuone,noselect,popup,fuzzy
+
+"===============================================================================
 " Autocommands:
 
 " open all folds when openning a file
@@ -134,10 +136,6 @@ let g:ale_linters_ignore = {
     \    'java': ['javac'],
     \    'typescriptreact': ['deno'],
     \}
-
-call deoplete#custom#option('sources', { '_': ['ale', 'file', 'buffer', 'member'] })
-call deoplete#custom#source('file', 'enable_slash_completion', v:true)
-call deoplete#custom#source('ale',  'max_menu_width', 0)
 
 " Disable ALE for .kts files
 let g:ale_pattern_options = {
