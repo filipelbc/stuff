@@ -49,6 +49,11 @@ wget -q -O dust.deb 'https://github.com/bootandy/dust/releases/download/v1.2.5/d
 sudo dpkg -i dust.deb
 rm dust.deb
 
+# Ripgrep
+wget -q -O rg.deb 'https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep_15.2.0-1_amd64.deb'
+sudo dpkg -i rg.deb
+rm rg.deb
+
 # Tokei
 cargo install tokei
 
