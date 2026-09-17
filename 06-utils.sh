@@ -35,28 +35,25 @@ make
 sudo make install
 
 # Bat
-wget -q -O bat.deb 'https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb'
+wget -q -O bat.deb 'https://github.com/sharkdp/bat/releases/download/v0.26.1/bat_0.26.1_amd64.deb'
 sudo dpkg -i bat.deb
 rm bat.deb
 
 # Delta
-wget -q -O delta.deb 'https://github.com/dandavison/delta/releases/download/0.18.2/git-delta-musl_0.18.2_amd64.deb'
+wget -q -O delta.deb 'https://github.com/dandavison/delta/releases/download/0.19.2/git-delta-musl_0.19.2_amd64.deb'
 sudo dpkg -i delta.deb
 rm delta.deb
 
 # Dust
-wget -q -O dust.deb 'https://github.com/bootandy/dust/releases/download/v1.1.1/du-dust_1.1.1-1_amd64.deb'
+wget -q -O dust.deb 'https://github.com/bootandy/dust/releases/download/v1.2.5/du-dust_1.2.5-1_amd64.deb'
 sudo dpkg -i dust.deb
 rm dust.deb
 
 # Tokei
-wget -q -O tokei.tar.gz 'https://github.com/XAMPPRocky/tokei/releases/download/v12.1.2/tokei-x86_64-unknown-linux-musl.tar.gz'
-tar -xzf tokei.tar.gz
-mv tokei ~/bin
-rm tokei.tar.gz
+cargo install tokei
 
 # Plantuml
 cd ~/bin
 mkdir -p java
 rm -rf java/*
-wget -q -O java/plantuml.jar 'https://ufpr.dl.sourceforge.net/project/plantuml/plantuml.jar'
+wget -q -O java/plantuml.jar 'https://github.com/plantuml/plantuml/releases/download/v1.2026.8/plantuml-1.2026.8.jar'

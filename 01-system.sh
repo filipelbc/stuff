@@ -68,6 +68,9 @@ sudo apt-get -y install \
     libtool \
     peek \
     pwgen \
+    python3-dev \
+    python3-pip \
+    python3-virtualenv \
     rename \
     shellcheck \
     temurin-21-jdk \
@@ -87,3 +90,6 @@ sudo update-grub
 
 # Add user to docker group
 sudo usermod -aG docker "$USER"
+
+# Cleanup
+sudo apt autoremove -y

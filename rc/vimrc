@@ -1,8 +1,5 @@
 set nocompatible
 
-" workaround weird slowness in insert mode
-let g:polyglot_disabled = ['org']
-
 " deoplete
 let g:deoplete#enable_at_startup = 1
 
@@ -23,14 +20,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'preservim/nerdtree'
 Plug 'vim-test/vim-test'
-" polyglot
-Plug 'sheerun/vim-polyglot'
 " markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 " org mode
 Plug 'filipelbc/orgmode.vim'
-" Jinja
-Plug 'Glench/Vim-Jinja2-Syntax'
 " rust
 Plug 'rust-lang/rust.vim'
 " additional ssh files
@@ -152,11 +145,11 @@ let g:ale_pattern_options = {
     \}
 
 " Java
-let $JAVA_TOOL_OPTIONS = "-javaagent:/files/git/amberflo/other/lombok.jar"
+let $JAVA_TOOL_OPTIONS = "-javaagent:/files/git/" . $USER . "/other/lombok.jar"
 
 let g:ale_java_eclipselsp_executable = '/usr/lib/jvm/temurin-21-jdk-amd64/bin/java'
-let g:ale_java_eclipselsp_path = '/files/git/amberflo/other/eclipse.jdt.ls'
-let g:ale_java_eclipselsp_workspace_path = '/tmp/jdtls/' . split(getcwd(), '/')[-1]
+let g:ale_java_eclipselsp_path = '/files/git/' . $USER . '/other/eclipse.jdt.ls'
+let g:ale_java_eclipselsp_workspace_path = '/tmp/jdtls/' . $USER . '/' . split(getcwd(), '/')[-1]
 
 let g:java_highlight_functions = 1
 let g:java_highlight_java = 1

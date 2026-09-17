@@ -8,9 +8,6 @@ mkdir -p ~/.config/terminator
 
 for i in \
     bashrc \
-    config/flake8 \
-    config/pylintrc \
-    config/pep8 \
     config/terminator/config \
     dircolors \
     fonts \
